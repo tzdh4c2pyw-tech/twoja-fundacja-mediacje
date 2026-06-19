@@ -17,6 +17,18 @@ type BlogPostPageProps = {
   }>;
 };
 
+type CurrentBlogPost = NonNullable<ReturnType<typeof getBlogPost>>;
+
+type EnhancedBlogPost = CurrentBlogPost & {
+  referencesApa6?: string[];
+  footnotes?: string[];
+  doiReferences?: {
+    label: string;
+    doi?: string;
+    url?: string;
+  }[];
+};
+
 export function generateStaticParams() {
   return getBlogPosts().map((post) => ({
     slug: post.slug
@@ -51,7 +63,12 @@ export async function generateMetadata({
       publishedTime: post.date,
       modifiedTime: post.updatedAt,
       siteName: "Fundacja Mediacji Sądowej i Pozasądowej",
-      locale: "pl_PL"
+      locale:
+        post.language === "pl"
+          ? "pl_PL"
+          : post.language === "uk"
+            ? "uk_UA"
+            : "en_GB"
     },
     twitter: {
       card: "summary_large_image",
@@ -69,7 +86,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const enhancedPost = post as EnhancedBlogPost;
   const relatedPosts = getRelatedBlogPosts(post.slug);
+
+  const referencesApa6 = enhancedPost.referencesApa6 ?? [];
+  const footnotes = enhancedPost.footnotes ?? [];
+  const doiReferences = enhancedPost.doiReferences ?? [];
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -79,6 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     datePublished: post.date,
     dateModified: post.updatedAt,
     inLanguage: post.language,
+    keywords: post.keywords,
     author: {
       "@type": "Organization",
       name: "Fundacja Mediacji Sądowej i Pozasądowej",
@@ -92,7 +115,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteUrl}/blog/${post.slug}`
-    }
+    },
+    citation: [
+      ...post.sources.map((source) => source.title),
+      ...referencesApa6
+    ]
   };
 
   const faqSchema = {
@@ -164,6 +191,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>{post.category}</span>
               <span>{post.date}</span>
               <span>{post.readingTime}</span>
+              <span>{post.language.toUpperCase()}</span>
             </div>
           </div>
         </header>
@@ -179,6 +207,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <li>czas czytania: {post.readingTime}</li>
                 <li>aktualizacja: {post.updatedAt}</li>
               </ul>
+            </div>
+
+            <div className="article-sidebar-box">
+              <p className="section-label">Frazy SEO</p>
+
+              <div className="article-tags">
+                {post.keywords.slice(0, 8).map((keyword) => (
+                  <span key={keyword}>{keyword}</span>
+                ))}
+              </div>
             </div>
 
             <div className="article-sidebar-box">
@@ -213,9 +251,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <p>{post.intro}</p>
             </section>
 
-            {post.sections.map((section) => (
+            {post.sections.map((section, sectionIndex) => (
               <section className="article-section" key={section.heading}>
-                <h2>{section.heading}</h2>
+                <h2>
+                  <span>{String(sectionIndex + 1).padStart(2, "0")}</span>
+                  {section.heading}
+                </h2>
 
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -224,7 +265,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ))}
 
             <section className="article-section">
-              <h2>Najczęstsze pytania</h2>
+              <h2>
+                <span>FAQ</span>
+                Najczęstsze pytania
+              </h2>
 
               <div className="faq-list">
                 {post.faq.map((item) => (
@@ -237,7 +281,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </section>
 
             <section className="article-section">
-              <h2>Źródła urzędowe i materiały</h2>
+              <h2>
+                <span>Źródła</span>
+                Źródła urzędowe i internetowe
+              </h2>
 
               <div className="article-sources">
                 {post.sources.map((source) => (
@@ -252,6 +299,79 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
             </section>
+
+            {referencesApa6.length > 0 && (
+              <section className="article-section">
+                <h2>
+                  <span>APA 6</span>
+                  Literatura
+                </h2>
+
+                <ol className="apa-list">
+                  {referencesApa6.map((reference) => (
+                    <li key={reference}>{reference}</li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
+            {doiReferences.length > 0 && (
+              <section className="article-section">
+                <h2>
+                  <span>DOI</span>
+                  Publikacje z DOI
+                </h2>
+
+                <div className="doi-list">
+                  {doiReferences.map((item) => (
+                    <div className="doi-item" key={item.label}>
+                      <strong>{item.label}</strong>
+
+                      {item.doi && (
+                        <span>
+                          DOI:{" "}
+                          <a
+                            href={`https://doi.org/${item.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.doi}
+                          </a>
+                        </span>
+                      )}
+
+                      {!item.doi && item.url && (
+                        <span>
+                          Link:{" "}
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            źródło
+                          </a>
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {footnotes.length > 0 && (
+              <section className="article-section">
+                <h2>
+                  <span>Przypisy</span>
+                  Przypisy i uwagi redakcyjne
+                </h2>
+
+                <ol className="footnote-list">
+                  {footnotes.map((footnote) => (
+                    <li key={footnote}>{footnote}</li>
+                  ))}
+                </ol>
+              </section>
+            )}
 
             <section className="article-cta">
               <div>
@@ -411,6 +531,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               line-height: 1.55;
             }
 
+            .article-tags {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 8px;
+            }
+
+            .article-tags span {
+              display: inline-flex;
+              align-items: center;
+              min-height: 30px;
+              border-radius: 999px;
+              background: rgba(18, 60, 49, 0.07);
+              border: 1px solid rgba(18, 60, 49, 0.08);
+              color: var(--green);
+              padding: 0 10px;
+              font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              font-size: 11px;
+              font-weight: 850;
+            }
+
             .article-side-links {
               display: grid;
               gap: 9px;
@@ -463,10 +603,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             }
 
             .article-section h2 {
+              display: grid;
+              gap: 8px;
               margin: 0 0 18px;
               font-size: clamp(30px, 3.4vw, 46px);
               line-height: 1.02;
               letter-spacing: -0.055em;
+            }
+
+            .article-section h2 span {
+              color: var(--green);
+              font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              font-size: 12px;
+              font-weight: 950;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
             }
 
             .article-section p {
@@ -497,6 +648,47 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             .article-sources a:hover {
               transform: translateY(-2px);
               background: rgba(18, 60, 49, 0.09);
+            }
+
+            .apa-list,
+            .footnote-list {
+              margin: 0;
+              padding-left: 22px;
+              color: var(--muted);
+              font-size: 16px;
+              line-height: 1.72;
+            }
+
+            .apa-list li,
+            .footnote-list li {
+              margin-bottom: 14px;
+            }
+
+            .doi-list {
+              display: grid;
+              gap: 12px;
+            }
+
+            .doi-item {
+              display: grid;
+              gap: 8px;
+              border-radius: 18px;
+              border: 1px solid rgba(18, 60, 49, 0.12);
+              background: rgba(18, 60, 49, 0.055);
+              padding: 16px;
+              color: var(--muted);
+              font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              font-size: 14px;
+              line-height: 1.55;
+            }
+
+            .doi-item strong {
+              color: var(--ink);
+            }
+
+            .doi-item a {
+              color: var(--green);
+              font-weight: 850;
             }
 
             .article-cta {
