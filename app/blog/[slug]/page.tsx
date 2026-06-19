@@ -21,12 +21,6 @@ type CurrentBlogPost = NonNullable<ReturnType<typeof getBlogPost>>;
 
 type EnhancedBlogPost = CurrentBlogPost & {
   referencesApa6?: string[];
-  footnotes?: string[];
-  doiReferences?: {
-    label: string;
-    doi?: string;
-    url?: string;
-  }[];
 };
 
 export function generateStaticParams() {
@@ -89,9 +83,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const enhancedPost = post as EnhancedBlogPost;
   const relatedPosts = getRelatedBlogPosts(post.slug);
 
-  const referencesApa6 = enhancedPost.referencesApa6 ?? [];
-  const footnotes = enhancedPost.footnotes ?? [];
-  const doiReferences = enhancedPost.doiReferences ?? [];
+  const literature = enhancedPost.referencesApa6 ?? [];
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -115,11 +107,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteUrl}/blog/${post.slug}`
-    },
-    citation: [
-      ...post.sources.map((source) => source.title),
-      ...referencesApa6
-    ]
+    }
   };
 
   const faqSchema = {
@@ -202,15 +190,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <p className="section-label">W skrócie</p>
 
               <ul>
-                <li>temat: {post.category}</li>
-                <li>język: {post.language.toUpperCase()}</li>
-                <li>czas czytania: {post.readingTime}</li>
-                <li>aktualizacja: {post.updatedAt}</li>
+                <li>{post.category}</li>
+                <li>Czas czytania: {post.readingTime}</li>
+                <li>Aktualizacja: {post.updatedAt}</li>
               </ul>
             </div>
 
             <div className="article-sidebar-box">
-              <p className="section-label">Frazy SEO</p>
+              <p className="section-label">Tematy</p>
 
               <div className="article-tags">
                 {post.keywords.slice(0, 8).map((keyword) => (
@@ -220,11 +207,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             <div className="article-sidebar-box">
-              <p className="section-label">Linki</p>
+              <p className="section-label">Przydatne linki</p>
 
               <div className="article-side-links">
                 {post.internalLinks.map((item) => (
-                  <a key={item.href} href={item.href}>
+                  <a key={`${item.href}-${item.label}`} href={item.href}>
                     {item.label}
                   </a>
                 ))}
@@ -235,8 +222,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <p className="section-label">Kontakt</p>
 
               <p>
-                Potrzebujesz mediatora w Krakowie? Opisz krótko sprawę i
-                preferowany tryb kontaktu.
+                Możesz krótko opisać sprawę, wskazać liczbę stron oraz napisać,
+                czy sprawa jest już w sądzie.
               </p>
 
               <div className="article-side-links">
@@ -280,96 +267,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </section>
 
-            <section className="article-section">
-              <h2>
-                <span>Źródła</span>
-                Źródła urzędowe i internetowe
-              </h2>
-
-              <div className="article-sources">
-                {post.sources.map((source) => (
-                  <a
-                    key={source.url}
-                    href={source.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {source.title}
-                  </a>
-                ))}
-              </div>
-            </section>
-
-            {referencesApa6.length > 0 && (
+            {(post.sources.length > 0 || literature.length > 0) && (
               <section className="article-section">
                 <h2>
-                  <span>APA 6</span>
-                  Literatura
+                  <span>Źródła</span>
+                  Literatura i źródła
                 </h2>
 
-                <ol className="apa-list">
-                  {referencesApa6.map((reference) => (
-                    <li key={reference}>{reference}</li>
+                <div className="source-list">
+                  {post.sources.map((source) => (
+                    <a
+                      key={source.url}
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="source-card"
+                    >
+                      {source.title}
+                    </a>
                   ))}
-                </ol>
-              </section>
-            )}
 
-            {doiReferences.length > 0 && (
-              <section className="article-section">
-                <h2>
-                  <span>DOI</span>
-                  Publikacje z DOI
-                </h2>
-
-                <div className="doi-list">
-                  {doiReferences.map((item) => (
-                    <div className="doi-item" key={item.label}>
-                      <strong>{item.label}</strong>
-
-                      {item.doi && (
-                        <span>
-                          DOI:{" "}
-                          <a
-                            href={`https://doi.org/${item.doi}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {item.doi}
-                          </a>
-                        </span>
-                      )}
-
-                      {!item.doi && item.url && (
-                        <span>
-                          Link:{" "}
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            źródło
-                          </a>
-                        </span>
-                      )}
+                  {literature.map((item) => (
+                    <div className="source-card source-card-static" key={item}>
+                      {item}
                     </div>
                   ))}
                 </div>
-              </section>
-            )}
-
-            {footnotes.length > 0 && (
-              <section className="article-section">
-                <h2>
-                  <span>Przypisy</span>
-                  Przypisy i uwagi redakcyjne
-                </h2>
-
-                <ol className="footnote-list">
-                  {footnotes.map((footnote) => (
-                    <li key={footnote}>{footnote}</li>
-                  ))}
-                </ol>
               </section>
             )}
 
@@ -378,9 +301,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <p className="section-label">Kontakt</p>
                 <h2>Zapytaj o mediację w konkretnej sprawie.</h2>
                 <p>
-                  W wiadomości podaj rodzaj sprawy, liczbę stron, etap
-                  postępowania oraz informację, czy istnieje skierowanie do
-                  mediacji.
+                  W wiadomości wystarczy krótki opis sprawy, informacja o
+                  liczbie stron oraz preferowany tryb kontaktu.
                 </p>
               </div>
 
@@ -408,8 +330,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <h2>Czytaj dalej.</h2>
             </div>
             <p>
-              Artykuły powiązane tematycznie z tym wpisem oraz z mediacją w
-              Krakowie.
+              Artykuły powiązane z mediacją, kosztami, zasadami rozmowy i
+              praktyką pracy mediatora.
             </p>
           </div>
 
@@ -525,10 +447,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             }
 
             .article-sidebar-box p {
-              margin: 0;
+              margin: 0 0 14px;
               color: var(--muted);
               font-size: 14px;
               line-height: 1.55;
+            }
+
+            .article-sidebar-box .section-label {
+              margin-bottom: 12px;
+              color: var(--gold-dark);
             }
 
             .article-tags {
@@ -627,68 +554,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               line-height: 1.78;
             }
 
-            .article-sources {
+            .source-list {
               display: grid;
               gap: 12px;
             }
 
-            .article-sources a {
+            .source-card {
               border-radius: 18px;
               border: 1px solid rgba(18, 60, 49, 0.12);
               background: rgba(18, 60, 49, 0.055);
               color: var(--green);
               padding: 16px;
               font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-              font-size: 13px;
+              font-size: 14px;
               font-weight: 850;
-              line-height: 1.5;
+              line-height: 1.55;
               transition: transform 160ms ease, background 160ms ease;
             }
 
-            .article-sources a:hover {
+            .source-card:hover {
               transform: translateY(-2px);
               background: rgba(18, 60, 49, 0.09);
             }
 
-            .apa-list,
-            .footnote-list {
-              margin: 0;
-              padding-left: 22px;
+            .source-card-static {
               color: var(--muted);
-              font-size: 16px;
-              line-height: 1.72;
-            }
-
-            .apa-list li,
-            .footnote-list li {
-              margin-bottom: 14px;
-            }
-
-            .doi-list {
-              display: grid;
-              gap: 12px;
-            }
-
-            .doi-item {
-              display: grid;
-              gap: 8px;
-              border-radius: 18px;
-              border: 1px solid rgba(18, 60, 49, 0.12);
-              background: rgba(18, 60, 49, 0.055);
-              padding: 16px;
-              color: var(--muted);
-              font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-              font-size: 14px;
-              line-height: 1.55;
-            }
-
-            .doi-item strong {
-              color: var(--ink);
-            }
-
-            .doi-item a {
-              color: var(--green);
-              font-weight: 850;
+              font-weight: 760;
             }
 
             .article-cta {
@@ -797,7 +688,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               .article-sidebar {
                 position: static;
-                grid-template-columns: 1fr;
               }
 
               .blog-grid {
