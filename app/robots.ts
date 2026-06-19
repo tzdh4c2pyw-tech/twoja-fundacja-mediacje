@@ -1,16 +1,16 @@
 import type { MetadataRoute } from "next";
-
-const baseUrl = "https://www.twojafundacja.pl";
+import { siteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
-        allow: "/"
+        allow: "/",
+        disallow: ["/api/", "/_next/", "/admin/", "/private/"]
       }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl
   };
 }
