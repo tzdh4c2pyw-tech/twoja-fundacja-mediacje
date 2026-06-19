@@ -1,3 +1,41 @@
+import type { Metadata } from "next";
+import {
+  localBusinessJsonLd,
+  seoDescriptions,
+  seoKeywords,
+  seoTitles,
+  siteUrl,
+  websiteJsonLd
+} from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: seoTitles.en,
+  description: seoDescriptions.en,
+  keywords: seoKeywords.en,
+  alternates: {
+    canonical: "/en",
+    languages: {
+      "pl-PL": "/",
+      en: "/en",
+      uk: "/uk",
+      "x-default": "/"
+    }
+  },
+  openGraph: {
+    title: seoTitles.en,
+    description: seoDescriptions.en,
+    url: `${siteUrl}/en`,
+    type: "website",
+    siteName: "Foundation for Court and Out-of-Court Mediation",
+    locale: "en_GB"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seoTitles.en,
+    description: seoDescriptions.en
+  }
+};
+
 const phone = "883 040 483";
 const phoneHref = "+48883040483";
 const email = "mediacje@twojafundacja.pl";
@@ -11,13 +49,13 @@ const languageLinks = [
 const mediationTypes = [
   {
     title: "Family mediation",
-    text: "Divorce, separation, child contact, parental communication, maintenance, care arrangements and family settlements.",
+    text: "Divorce, separation, child contact, maintenance, care arrangements, parental communication and family settlements.",
     href: "#family",
     className: "card card-petrol bento-large"
   },
   {
     title: "Criminal mediation",
-    text: "A structured conversation between the injured party and the offender, compensation, apology and settlement terms.",
+    text: "A structured conversation between the injured party and the offender, including compensation, apology and settlement terms.",
     href: "#criminal",
     className: "card card-dark bento-large"
   },
@@ -64,26 +102,22 @@ const qualificationCards = [
   {
     title: "Permanent mediator",
     label: "Regional Court in Krakow",
-    text: "Entry on the list of permanent mediators maintained by the President of the Regional Court in Krakow.",
-    href: "#contact"
+    text: "Entry on the list of permanent mediators maintained by the President of the Regional Court in Krakow."
   },
   {
     title: "Criminal mediation",
     label: "Foundation entry",
-    text: "The Foundation is listed among institutions authorised to conduct mediation proceedings in criminal cases.",
-    href: "#contact"
+    text: "The Foundation is listed among institutions authorised to conduct mediation proceedings in criminal cases."
   },
   {
     title: "Mediator profession",
     label: "Postgraduate studies",
-    text: "Postgraduate studies in the mediator profession and preparation for conducting mediation.",
-    href: "#contact"
+    text: "Postgraduate studies in the mediator profession and preparation for conducting mediation."
   },
   {
     title: "Family mediation",
     label: "Postgraduate studies",
-    text: "Postgraduate studies in family mediation and basic psychological support for families.",
-    href: "#contact"
+    text: "Postgraduate studies in family mediation and basic psychological support for families."
   }
 ];
 
@@ -102,6 +136,11 @@ const faqItems = [
     question: "Does the Foundation conduct criminal mediation?",
     answer:
       "Yes. The Foundation is listed among institutions authorised to conduct mediation proceedings in criminal cases."
+  },
+  {
+    question: "Is criminal mediation free of charge for the parties?",
+    answer:
+      "Yes. In criminal cases, mediation costs are not charged to the parties. The mediator’s remuneration and reimbursable expenses are covered by the State Treasury."
   },
   {
     question: "How should I prepare for the first contact?",
@@ -150,20 +189,18 @@ function LanguageSwitcher() {
 function DocumentCard({
   title,
   label,
-  text,
-  href
+  text
 }: {
   title: string;
   label: string;
   text: string;
-  href: string;
 }) {
   return (
     <article className="card">
       <span className="tag">{label}</span>
       <h3>{title}</h3>
       <p>{text}</p>
-      <a className="card-link" href={href}>
+      <a className="card-link" href="#contact">
         Request verification →
       </a>
     </article>
@@ -171,51 +208,23 @@ function DocumentCard({
 }
 
 export default function EnglishHomePage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Foundation for Court and Out-of-Court Mediation",
-    url: "https://www.twojafundacja.pl/en",
-    telephone: phoneHref,
-    email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Kielecka 2/53",
-      addressLocality: "Krakow",
-      postalCode: "31-526",
-      addressCountry: "PL"
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 50.0664757,
-      longitude: 19.9621993
-    },
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Krakow"
-      },
-      {
-        "@type": "Country",
-        name: "Poland"
-      }
-    ],
-    serviceType: [
-      "family mediation",
-      "criminal mediation",
-      "civil mediation",
-      "business mediation",
-      "online mediation",
-      "court mediation",
-      "out-of-court mediation"
-    ]
-  };
+  const localBusinessSchema = localBusinessJsonLd();
+  const websiteSchema = websiteJsonLd();
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessSchema)
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema)
+        }}
       />
 
       <div className="topbar">
@@ -236,6 +245,9 @@ export default function EnglishHomePage() {
             <a href="#scope">Scope</a>
             <a href="#process">Process</a>
             <a href="#online">Online</a>
+            <a href="#criminal">Criminal</a>
+            <a href="#family">Family</a>
+            <a href="#civil">Civil</a>
             <a href="#location">Location</a>
             <a href="#qualifications">Qualifications</a>
             <a href="#contact">Contact</a>
@@ -272,6 +284,12 @@ export default function EnglishHomePage() {
             <a className="button button-secondary" href="#qualifications">
               Check qualifications
             </a>
+            <a className="button button-secondary" href="/">
+              Polish version
+            </a>
+            <a className="button button-secondary" href="/uk">
+              Ukrainian version
+            </a>
           </div>
 
           <div className="hero-mini-grid">
@@ -281,11 +299,11 @@ export default function EnglishHomePage() {
             </div>
             <div>
               <strong>Criminal mediation</strong>
-              <span>Foundation listed in the register</span>
+              <span>free of charge for the parties</span>
             </div>
             <div>
-              <strong>Online</strong>
-              <span>initial remote consultation</span>
+              <strong>Languages</strong>
+              <span>Polish, English and Ukrainian</span>
             </div>
           </div>
         </div>
@@ -294,7 +312,7 @@ export default function EnglishHomePage() {
           <figure className="portrait">
             <img
               src="/foto/vadym%20rekel.jpg"
-              alt="Vadym Rekel mediator in Krakow"
+              alt="Vadym Rekel court mediator in Krakow"
             />
           </figure>
 
@@ -324,7 +342,7 @@ export default function EnglishHomePage() {
           </div>
           <div className="trust-item">
             <strong>Three languages</strong>
-            Polish, English and Ukrainian versions
+            Polish, English and Ukrainian
           </div>
         </div>
       </section>
@@ -388,7 +406,6 @@ export default function EnglishHomePage() {
               <span className="label">online contact</span>
               <span className="label">remote mediation</span>
               <span className="label">initial assessment</span>
-              <span className="label">AI form later</span>
             </div>
           </div>
         </div>
@@ -397,39 +414,38 @@ export default function EnglishHomePage() {
       <section className="section" id="criminal">
         <SectionHeading
           label="Criminal mediation"
-          title="The Foundation is listed for criminal mediation."
-          text="Criminal mediation requires particular caution, neutrality and understanding of the function of the proceedings."
+          title="The Foundation is authorised to conduct criminal mediation."
+          text="Criminal mediation requires particular care, neutrality and understanding of the function of criminal proceedings. In criminal cases, mediation is free of charge for the parties."
         />
 
         <div className="grid-3">
           <article className="card card-gold">
-            <span className="tag">Criminal matters</span>
+            <span className="tag">Criminal cases</span>
             <h3>Injured party and offender</h3>
             <p>
-              Mediation may address the consequences of the act, responsibility,
-              apology, compensation, redress and settlement terms.
+              Mediation may concern the consequences of the offence,
+              responsibility, apology, compensation, redress and settlement
+              conditions.
             </p>
           </article>
 
           <article className="card card-gold">
-            <span className="tag">Procedure</span>
-            <h3>On the basis of referral</h3>
+            <span className="tag">Costs</span>
+            <h3>Free for the parties</h3>
             <p>
-              In criminal cases, mediation is conducted in a specific procedure,
-              with confidentiality, neutrality and proper documentation.
+              In criminal cases, mediation costs are not charged to the parties.
+              The mediator’s remuneration and reimbursable expenses are covered
+              by the State Treasury.
             </p>
           </article>
 
           <article className="card card-dark">
-            <span className="tag">Document</span>
-            <h3>Register entry</h3>
+            <span className="tag">Authorisation</span>
+            <h3>Foundation entry</h3>
             <p>
-              The Foundation has a decision confirming its entry among
-              institutions authorised to conduct mediation in criminal cases.
+              The Foundation is entered in the list of institutions authorised to
+              conduct mediation proceedings in criminal cases.
             </p>
-            <a className="card-link" href="#contact">
-              Request verification →
-            </a>
           </article>
         </div>
       </section>
@@ -437,17 +453,17 @@ export default function EnglishHomePage() {
       <section className="section" id="family">
         <SectionHeading
           label="Family mediation"
-          title="Family matters require calm, language and boundaries."
-          text="In family matters, mediation helps organise the conversation where emotions, expectations and responsibility for the family’s future overlap."
+          title="Family matters require calm language and clear boundaries."
+          text="Family mediation organises discussion where emotions, expectations and responsibility for the family’s future overlap."
         />
 
         <div className="grid-3">
           <article className="card">
             <span className="tag">Family</span>
-            <h3>Contact and care</h3>
+            <h3>Child contact and care</h3>
             <p>
               Arrangements concerning child contact, care, parental
-              communication and daily family organisation.
+              communication and everyday family organisation.
             </p>
           </article>
 
@@ -455,21 +471,18 @@ export default function EnglishHomePage() {
             <span className="tag">Separation</span>
             <h3>Divorce and separation</h3>
             <p>
-              Conversation on divorce-related, family, property and
-              organisational matters.
+              Discussion of divorce-related, family, financial and organisational
+              issues.
             </p>
           </article>
 
           <article className="card">
             <span className="tag">Preparation</span>
-            <h3>Family mediation</h3>
+            <h3>Family mediation background</h3>
             <p>
               Preparation includes postgraduate studies in family mediation and
               basic psychological support for families.
             </p>
-            <a className="card-link" href="#contact">
-              Request verification →
-            </a>
           </article>
         </div>
       </section>
@@ -478,7 +491,7 @@ export default function EnglishHomePage() {
         <SectionHeading
           label="Civil and business mediation"
           title="Private, contractual and business disputes."
-          text="In civil and business matters, mediation may help establish settlement, payment or cooperation-ending terms faster."
+          text="In civil and business matters, mediation may help establish settlement terms, payments or the conditions for ending cooperation."
         />
 
         <div className="grid-3">
@@ -493,23 +506,20 @@ export default function EnglishHomePage() {
 
           <article className="card" id="business">
             <span className="tag">Business</span>
-            <h3>Entrepreneurs</h3>
+            <h3>Disputes between entrepreneurs</h3>
             <p>
-              Payments, liability, contracts, cooperation, ending business
-              relationships and settlements.
+              Payments, liability, contracts, cooperation, ending a business
+              relationship and mediation settlements.
             </p>
           </article>
 
           <article className="card">
-            <span className="tag">Document</span>
-            <h3>Specialist training</h3>
+            <span className="tag">Online</span>
+            <h3>Remote first contact</h3>
             <p>
-              Preparation includes specialist training in civil and business
-              mediation.
+              For international or multilingual matters, the first contact may
+              be arranged remotely, depending on the type of case.
             </p>
-            <a className="card-link" href="#contact">
-              Request verification →
-            </a>
           </article>
         </div>
       </section>
@@ -532,23 +542,24 @@ export default function EnglishHomePage() {
               <strong itemProp="name">
                 Foundation for Court and Out-of-Court Mediation
               </strong>{" "}
-              provides <strong>mediation services in Krakow</strong> at{" "}
-              <strong>Kielecka 2/53, 31-526 Krakow</strong>, close to{" "}
+              conducts <strong>mediation in Krakow</strong> at{" "}
+              <strong>Kielecka 2/53, 31-526 Krakow</strong>, near{" "}
               <strong>Rondo Mogilskie</strong>.
             </p>
 
             <p>
               This is a convenient location for people looking for a{" "}
-              <strong>mediator in Krakow</strong> in family, civil, commercial
-              and criminal matters. The office offers a calm and neutral setting
-              for structured conversation and settlement-oriented work.
+              <strong>mediator in Krakow</strong>, including{" "}
+              <strong>family, civil, business and criminal matters</strong>. The
+              office provides calm and neutral conditions for discussion,
+              conflict organisation and reaching a settlement.
             </p>
 
             <p>
               The office is located approximately{" "}
               <strong>600 metres from the Regional Court in Krakow</strong> at
-              Przy Rondzie 7, which is practical for parties, attorneys and
-              people involved in court-related mediation.
+              Przy Rondzie 7, which is useful for parties and attorneys involved
+              in court proceedings.
             </p>
 
             <div className="location-advantages">
@@ -556,7 +567,7 @@ export default function EnglishHomePage() {
                 Central Krakow — Rondo Mogilskie
               </div>
               <div className="location-advantage">
-                Approx. 600 m from the Regional Court
+                Around 600 m from the Regional Court
               </div>
               <div className="location-advantage">
                 Easy access by public transport
@@ -569,9 +580,9 @@ export default function EnglishHomePage() {
 
           <div className="map-frame">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10244.231941308924!2d19.9621993!3d50.0664757!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b57a3e08b9d%3A0xf4ed3bbeb098c39!2sFundacja%20Mediacji%20Sądowej%20i%20Pozasądowej!5e0!3m2!1sen!2spl!4v1701936419454!5m2!1sen!2spl"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10244.231941308924!2d19.9621993!3d50.0664757!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b57a3e08b9d%3A0xf4ed3bbeb098c39!2sFundacja%20Mediacji%20Sądowej%20i%20Pozasądowej!5e0!3m2!1spl!2spl!4v1701936419454!5m2!1spl!2spl"
               loading="lazy"
-              title="Mediator in Krakow — Foundation for Court and Out-of-Court Mediation location"
+              title="Mediator in Krakow — Foundation location"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
@@ -587,12 +598,37 @@ export default function EnglishHomePage() {
             </a>
 
             <a className="location-cta-phone" href={`tel:${phoneHref}`}>
-              +48 {phone}
+              {phone}
             </a>
 
             <a className="location-cta-email" href={`mailto:${email}`}>
-              Book mediation
+              Arrange mediation
             </a>
+          </div>
+
+          <meta itemProp="telephone" content="+48 883 040 483" />
+          <meta itemProp="email" content="mediacje@twojafundacja.pl" />
+          <meta itemProp="url" content={`${siteUrl}/en`} />
+          <meta itemProp="areaServed" content="Krakow, Malopolska, Poland" />
+
+          <div
+            itemProp="address"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <meta itemProp="streetAddress" content="Kielecka 2/53" />
+            <meta itemProp="postalCode" content="31-526" />
+            <meta itemProp="addressLocality" content="Krakow" />
+            <meta itemProp="addressCountry" content="PL" />
+          </div>
+
+          <div
+            itemProp="geo"
+            itemScope
+            itemType="https://schema.org/GeoCoordinates"
+          >
+            <meta itemProp="latitude" content="50.0664757" />
+            <meta itemProp="longitude" content="19.9621993" />
           </div>
         </div>
       </section>
@@ -600,8 +636,8 @@ export default function EnglishHomePage() {
       <section className="section" id="qualifications">
         <SectionHeading
           label="Qualifications"
-          title="Documents confirming mediator preparation."
-          text="The public page shows selected information about qualifications. Full documents may be verified upon justified contact with the office."
+          title="Mediator documents and certificates."
+          text="Selected documents confirm the mediator’s and the Foundation’s preparation for court, out-of-court, family and criminal mediation."
         />
 
         <div className="grid-4">
@@ -611,7 +647,6 @@ export default function EnglishHomePage() {
               title={item.title}
               label={item.label}
               text={item.text}
-              href={item.href}
             />
           ))}
         </div>
@@ -620,8 +655,8 @@ export default function EnglishHomePage() {
       <section className="section">
         <SectionHeading
           label="FAQ"
-          title="Common questions before contacting a mediator."
-          text="Brief answers on confidentiality, online mediation, criminal mediation and case preparation."
+          title="Frequently asked questions before contacting a mediator."
+          text="Brief answers on confidentiality, online mediation, criminal mediation, costs and case preparation."
         />
 
         <div className="faq-list">
@@ -638,18 +673,18 @@ export default function EnglishHomePage() {
         <div className="contact-panel">
           <div>
             <p className="section-label">Contact</p>
-            <h2>Describe the matter and establish the possible mediation path.</h2>
+            <h2>Describe the case and establish the possible mediation path.</h2>
             <p>
-              In your message, indicate the type of case, the number of parties,
-              the stage of proceedings and whether mediation should be
-              court-referred, out-of-court, stationary or online.
+              In your message, provide the type of case, the number of parties,
+              the stage of proceedings, information on any court or authority
+              referral and the preferred form of mediation.
             </p>
           </div>
 
           <div className="contact-box">
             <span className="contact-line">
               <strong>Phone:</strong>{" "}
-              <a href={`tel:${phoneHref}`}>+48 {phone}</a>
+              <a href={`tel:${phoneHref}`}>{phone}</a>
             </span>
             <span className="contact-line">
               <strong>E-mail:</strong> <a href={`mailto:${email}`}>{email}</a>
@@ -664,6 +699,12 @@ export default function EnglishHomePage() {
               </a>
               <a className="button button-secondary" href={`mailto:${email}`}>
                 Send e-mail
+              </a>
+              <a className="button button-secondary" href="/">
+                Polish version
+              </a>
+              <a className="button button-secondary" href="/uk">
+                Ukrainian version
               </a>
             </div>
           </div>
@@ -685,7 +726,7 @@ export default function EnglishHomePage() {
           <div>
             <span className="footer-title">Contact</span>
             <span className="footer-line">
-              Phone: <a href={`tel:${phoneHref}`}>+48 {phone}</a>
+              Phone: <a href={`tel:${phoneHref}`}>{phone}</a>
             </span>
             <span className="footer-line">
               <a href={`mailto:${email}`}>{email}</a>
@@ -694,13 +735,17 @@ export default function EnglishHomePage() {
           </div>
 
           <div>
-            <span className="footer-title">Language versions</span>
+            <span className="footer-title">Navigation</span>
             <a className="footer-link" href="/">
               Polish version
             </a>
             <br />
             <a className="footer-link" href="/uk">
               Ukrainian version
+            </a>
+            <br />
+            <a className="footer-link" href="#contact">
+              Contact
             </a>
           </div>
         </div>

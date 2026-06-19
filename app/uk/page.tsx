@@ -1,3 +1,41 @@
+import type { Metadata } from "next";
+import {
+  localBusinessJsonLd,
+  seoDescriptions,
+  seoKeywords,
+  seoTitles,
+  siteUrl,
+  websiteJsonLd
+} from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: seoTitles.uk,
+  description: seoDescriptions.uk,
+  keywords: seoKeywords.uk,
+  alternates: {
+    canonical: "/uk",
+    languages: {
+      "pl-PL": "/",
+      en: "/en",
+      uk: "/uk",
+      "x-default": "/"
+    }
+  },
+  openGraph: {
+    title: seoTitles.uk,
+    description: seoDescriptions.uk,
+    url: `${siteUrl}/uk`,
+    type: "website",
+    siteName: "Фундація судової та позасудової медіації",
+    locale: "uk_UA"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seoTitles.uk,
+    description: seoDescriptions.uk
+  }
+};
+
 const phone = "883 040 483";
 const phoneHref = "+48883040483";
 const email = "mediacje@twojafundacja.pl";
@@ -11,13 +49,13 @@ const languageLinks = [
 const mediationTypes = [
   {
     title: "Сімейна медіація",
-    text: "Розлучення, сепарація, контакти з дитиною, аліменти, опіка, батьківська комунікація та сімейні домовленості.",
+    text: "Розлучення, сепарація, контакти з дитиною, аліменти, опіка, комунікація між батьками та сімейні домовленості.",
     href: "#family",
     className: "card card-petrol bento-large"
   },
   {
     title: "Кримінальна медіація",
-    text: "Структурована розмова між потерпілим і правопорушником, відшкодування шкоди, вибачення та умови порозуміння.",
+    text: "Структурована розмова між потерпілою особою та правопорушником: відшкодування шкоди, вибачення і умови порозуміння.",
     href: "#criminal",
     className: "card card-dark bento-large"
   },
@@ -44,11 +82,11 @@ const mediationTypes = [
 const processSteps = [
   {
     title: "Опис справи",
-    text: "Ви коротко описуєте конфлікт, кількість сторін, етап справи та зазначаєте, чи медіація має бути судовою, позасудовою або онлайн."
+    text: "Ви коротко описуєте конфлікт, кількість сторін, етап справи та зазначаєте, чи це судова, позасудова або онлайн-медіація."
   },
   {
     title: "Вибір процедури",
-    text: "Медіатор організаційно визначає відповідний напрям: сімейна, кримінальна, цивільна, господарська або дистанційна медіація."
+    text: "Медіатор організаційно визначає відповідний шлях: сімейна, кримінальна, цивільна, господарська або онлайн-медіація."
   },
   {
     title: "Контакт зі сторонами",
@@ -64,54 +102,55 @@ const qualificationCards = [
   {
     title: "Постійний медіатор",
     label: "Окружний суд у Кракові",
-    text: "Внесення до списку постійних медіаторів, який веде Голова Окружного суду в Кракові.",
-    href: "#contact"
+    text: "Внесення до списку постійних медіаторів, який веде Голова Окружного суду у Кракові."
   },
   {
     title: "Кримінальна медіація",
-    label: "Внесення Фундації до переліку",
-    text: "Фундація внесена до переліку установ, уповноважених проводити медіаційні провадження у кримінальних справах.",
-    href: "#contact"
+    label: "Внесення Фундації до реєстру",
+    text: "Фундація внесена до переліку установ, уповноважених проводити медіаційне провадження у кримінальних справах."
   },
   {
     title: "Професія медіатора",
     label: "Післядипломна освіта",
-    text: "Післядипломне навчання у сфері професії медіатора та підготовки до проведення медіації.",
-    href: "#contact"
+    text: "Післядипломна освіта у сфері професії медіатора та підготовки до проведення медіації."
   },
   {
     title: "Сімейна медіація",
     label: "Післядипломна освіта",
-    text: "Післядипломне навчання у сфері сімейної медіації та основ психологічної допомоги родині.",
-    href: "#contact"
+    text: "Післядипломна освіта у сфері сімейної медіації та основ психологічної допомоги сім’ї."
   }
 ];
 
 const faqItems = [
   {
-    question: "Чи є медіація конфіденційною?",
+    question: "Чи медіація є конфіденційною?",
     answer:
-      "Так. Медіація є конфіденційною процедурою. Конфіденційність допомагає сторонам спокійно говорити про конфлікт і шукати рішення без подальшої ескалації."
+      "Так. Медіація є конфіденційною. Конфіденційність допомагає сторонам спокійно говорити про конфлікт і шукати рішення без подальшої ескалації."
   },
   {
     question: "Чи можлива онлайн-медіація?",
     answer:
-      "Так. У частині справ можлива онлайн-медіація або попередня дистанційна консультація. Це залежить від типу справи, згоди сторін та організаційних умов."
+      "Так. У частині справ можлива онлайн-медіація або попередня дистанційна консультація. Це залежить від виду справи, згоди сторін та організаційних умов."
   },
   {
-    question: "Чи Фундація проводить кримінальну медіацію?",
+    question: "Чи Фундація проводить кримінальні медіації?",
     answer:
-      "Так. Фундація внесена до переліку установ, уповноважених проводити медіаційні провадження у кримінальних справах."
+      "Так. Фундація внесена до переліку установ, уповноважених проводити медіаційне провадження у кримінальних справах."
+  },
+  {
+    question: "Чи кримінальна медіація є безкоштовною для сторін?",
+    answer:
+      "Так. У кримінальних справах витрати на медіацію не покладаються на сторони. Винагороду медіатора та відшкодування витрат покриває Державна скарбниця."
   },
   {
     question: "Як підготуватися до першого контакту?",
     answer:
-      "Варто зазначити тип справи, кількість сторін, етап провадження, інформацію про можливе направлення судом або органом, а також бажану форму контакту."
+      "Варто вказати вид справи, кількість сторін, етап провадження, інформацію про можливе направлення судом або органом та бажану форму контакту."
   },
   {
-    question: "Чи може медіаційна угода завершити спір?",
+    question: "Чи медіаційна угода може завершити спір?",
     answer:
-      "У багатьох справах медіаційна угода може впорядкувати відносини сторін і завершити спір. Її правовий ефект залежить від типу справи та відповідної процедури."
+      "У багатьох справах медіаційна угода може впорядкувати відносини сторін і завершити спір. Її правовий ефект залежить від виду справи та відповідної процедури."
   }
 ];
 
@@ -150,72 +189,42 @@ function LanguageSwitcher() {
 function DocumentCard({
   title,
   label,
-  text,
-  href
+  text
 }: {
   title: string;
   label: string;
   text: string;
-  href: string;
 }) {
   return (
     <article className="card">
       <span className="tag">{label}</span>
       <h3>{title}</h3>
       <p>{text}</p>
-      <a className="card-link" href={href}>
-        Запитати про підтвердження →
+      <a className="card-link" href="#contact">
+        Запитати підтвердження →
       </a>
     </article>
   );
 }
 
 export default function UkrainianHomePage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Фундація судової та позасудової медіації",
-    url: "https://www.twojafundacja.pl/uk",
-    telephone: phoneHref,
-    email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Kielecka 2/53",
-      addressLocality: "Kraków",
-      postalCode: "31-526",
-      addressCountry: "PL"
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 50.0664757,
-      longitude: 19.9621993
-    },
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Kraków"
-      },
-      {
-        "@type": "Country",
-        name: "Polska"
-      }
-    ],
-    serviceType: [
-      "сімейна медіація",
-      "кримінальна медіація",
-      "цивільна медіація",
-      "господарська медіація",
-      "онлайн-медіація",
-      "судова медіація",
-      "позасудова медіація"
-    ]
-  };
+  const localBusinessSchema = localBusinessJsonLd();
+  const websiteSchema = websiteJsonLd();
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessSchema)
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema)
+        }}
       />
 
       <div className="topbar">
@@ -234,8 +243,11 @@ export default function UkrainianHomePage() {
 
           <div className="nav-links">
             <a href="#scope">Напрями</a>
-            <a href="#process">Як це працює</a>
+            <a href="#process">Процес</a>
             <a href="#online">Онлайн</a>
+            <a href="#criminal">Кримінальна</a>
+            <a href="#family">Сімейна</a>
+            <a href="#civil">Цивільна</a>
             <a href="#location">Локація</a>
             <a href="#qualifications">Кваліфікації</a>
             <a href="#contact">Контакт</a>
@@ -257,9 +269,9 @@ export default function UkrainianHomePage() {
 
           <p className="lead">
             Сімейна, кримінальна, цивільна, господарська та онлайн-медіація.
-            Конфіденційна й упорядкована розмова, яку проводить безсторонній
-            медіатор, — з метою досягнення порозуміння та обмеження ескалації
-            конфлікту.
+            Конфіденційна й упорядкована розмова за участю неупередженого
+            медіатора — з можливістю вироблення угоди та зменшення ескалації
+            спору.
           </p>
 
           <div className="hero-actions">
@@ -272,6 +284,12 @@ export default function UkrainianHomePage() {
             <a className="button button-secondary" href="#qualifications">
               Перевірити кваліфікації
             </a>
+            <a className="button button-secondary" href="/">
+              Польська версія
+            </a>
+            <a className="button button-secondary" href="/en">
+              Англійська версія
+            </a>
           </div>
 
           <div className="hero-mini-grid">
@@ -281,11 +299,11 @@ export default function UkrainianHomePage() {
             </div>
             <div>
               <strong>Кримінальна медіація</strong>
-              <span>Фундація внесена до переліку</span>
+              <span>0 zł для сторін провадження</span>
             </div>
             <div>
-              <strong>Онлайн</strong>
-              <span>попередня дистанційна консультація</span>
+              <strong>Мови</strong>
+              <span>польська, українська та англійська</span>
             </div>
           </div>
         </div>
@@ -294,15 +312,15 @@ export default function UkrainianHomePage() {
           <figure className="portrait">
             <img
               src="/foto/vadym%20rekel.jpg"
-              alt="Vadym Rekel медіатор у Кракові"
+              alt="Vadym Rekel судовий медіатор у Кракові"
             />
           </figure>
 
           <div className="hero-badge">
             <strong>Центр медіації</strong>
             <span>
-              Судова та позасудова медіація · Краків · Kielecka 2/53 · можливий
-              онлайн-контакт.
+              Судова та позасудова медіація · Краків · вул. Kielecka 2/53 ·
+              можливий онлайн-контакт.
             </span>
           </div>
         </aside>
@@ -312,11 +330,11 @@ export default function UkrainianHomePage() {
         <div className="trust-inner">
           <div className="trust-item">
             <strong>Постійний медіатор</strong>
-            внесення при Окружному суді в Кракові
+            внесений до списку при Окружному суді у Кракові
           </div>
           <div className="trust-item">
             <strong>Кримінальна медіація</strong>
-            Фундація внесена до переліку установ
+            Фундація внесена до переліку уповноважених установ
           </div>
           <div className="trust-item">
             <strong>Краків</strong>
@@ -324,7 +342,7 @@ export default function UkrainianHomePage() {
           </div>
           <div className="trust-item">
             <strong>Три мови</strong>
-            польська, англійська та українська версії
+            польська, українська та англійська
           </div>
         </div>
       </section>
@@ -333,7 +351,7 @@ export default function UkrainianHomePage() {
         <SectionHeading
           label="Напрями медіації"
           title="Оберіть тип справи."
-          text="Основні напрями медіації поділено так, щоб користувач швидко міг визначити правильний шлях контакту."
+          text="Основні напрями медіації поділено так, щоб користувач швидко знайшов відповідний шлях контакту."
         />
 
         <div className="bento-grid">
@@ -353,8 +371,8 @@ export default function UkrainianHomePage() {
       <section className="section" id="process">
         <SectionHeading
           label="Як працює медіація"
-          title="Проста процедура і спокійна структура розмови."
-          text="Медіація подана як зрозуміла процедура: перший контакт, вибір порядку дій, організація зустрічі та робота над рішенням."
+          title="Зрозумілий процес і спокійна структура розмови."
+          text="Медіація представлена як проста процедура: перший контакт, вибір формату, організація зустрічі та робота над рішенням."
         />
 
         <div className="grid-4 process">
@@ -377,17 +395,16 @@ export default function UkrainianHomePage() {
           <div>
             <p>
               Ви можете надіслати короткий опис конфлікту, організаційні
-              документи або запитання щодо процедури медіації. На цій підставі
-              можна попередньо визначити тип справи, потрібну інформацію та
-              те, чи доречною буде стаціонарна або онлайн-медіація.
+              документи або запитання щодо процедури медіації. На цій основі
+              можна попередньо визначити тип справи, потрібну інформацію та те,
+              чи доречною буде стаціонарна або онлайн-медіація.
             </p>
 
             <div className="labels">
               <span className="label">опис справи</span>
               <span className="label">онлайн-контакт</span>
               <span className="label">дистанційна медіація</span>
-              <span className="label">попередня оцінка</span>
-              <span className="label">AI-форма пізніше</span>
+              <span className="label">попередня оцінка справи</span>
             </div>
           </div>
         </div>
@@ -396,14 +413,14 @@ export default function UkrainianHomePage() {
       <section className="section" id="criminal">
         <SectionHeading
           label="Кримінальна медіація"
-          title="Фундація внесена до переліку кримінальної медіації."
-          text="Кримінальна медіація потребує особливої обережності, нейтральності та розуміння функції провадження."
+          title="Фундація уповноважена проводити кримінальні медіації."
+          text="Кримінальна медіація вимагає особливої обережності, нейтральності та розуміння функції кримінального провадження. Для сторін така медіація є безкоштовною."
         />
 
         <div className="grid-3">
           <article className="card card-gold">
             <span className="tag">Кримінальні справи</span>
-            <h3>Потерпілий і правопорушник</h3>
+            <h3>Потерпіла особа і правопорушник</h3>
             <p>
               Медіація може стосуватися наслідків діяння, відповідальності,
               вибачення, відшкодування шкоди, компенсації та умов порозуміння.
@@ -411,25 +428,22 @@ export default function UkrainianHomePage() {
           </article>
 
           <article className="card card-gold">
-            <span className="tag">Процедура</span>
-            <h3>На підставі направлення</h3>
+            <span className="tag">Витрати</span>
+            <h3>Безкоштовно для сторін</h3>
             <p>
-              У кримінальних справах медіація проводиться у визначеному порядку,
-              із дотриманням конфіденційності, нейтральності медіатора та
-              належної документації.
+              У кримінальних справах витрати на медіаційне провадження не
+              покладаються на сторони. Винагороду медіатора та відшкодування
+              витрат покриває Державна скарбниця.
             </p>
           </article>
 
           <article className="card card-dark">
-            <span className="tag">Документ</span>
-            <h3>Внесення до переліку</h3>
+            <span className="tag">Уповноваження</span>
+            <h3>Внесення Фундації до переліку</h3>
             <p>
-              Фундація має рішення, що підтверджує внесення до переліку установ,
-              уповноважених проводити медіацію у кримінальних справах.
+              Фундація внесена до переліку установ, уповноважених проводити
+              медіаційне провадження у кримінальних справах.
             </p>
-            <a className="card-link" href="#contact">
-              Запитати про підтвердження →
-            </a>
           </article>
         </div>
       </section>
@@ -437,16 +451,16 @@ export default function UkrainianHomePage() {
       <section className="section" id="family">
         <SectionHeading
           label="Сімейна медіація"
-          title="Сімейні справи потребують спокою, мови і меж."
+          title="Сімейні справи потребують спокійної мови й чітких меж."
           text="У сімейних справах медіація впорядковує розмову там, де емоції, очікування та відповідальність за майбутнє родини накладаються одне на одне."
         />
 
         <div className="grid-3">
           <article className="card">
-            <span className="tag">Родина</span>
-            <h3>Контакти та опіка</h3>
+            <span className="tag">Сім’я</span>
+            <h3>Контакти з дитиною та опіка</h3>
             <p>
-              Домовленості щодо контактів із дитиною, опіки, батьківської
+              Домовленості щодо контактів з дитиною, опіки, батьківської
               комунікації та організації щоденних сімейних справ.
             </p>
           </article>
@@ -455,21 +469,18 @@ export default function UkrainianHomePage() {
             <span className="tag">Розставання</span>
             <h3>Розлучення і сепарація</h3>
             <p>
-              Розмова про справи, пов’язані з розлученням, сімейними,
-              майновими та організаційними питаннями.
+              Розмова про питання, пов’язані з розлученням, сімейні, фінансові
+              та організаційні справи.
             </p>
           </article>
 
           <article className="card">
             <span className="tag">Підготовка</span>
-            <h3>Сімейна медіація</h3>
+            <h3>Підготовка до сімейної медіації</h3>
             <p>
-              Підготовка охоплює післядипломне навчання з сімейної медіації та
-              основ психологічної допомоги родині.
+              Підготовка охоплює післядипломну освіту у сфері сімейної
+              медіації та основ психологічної допомоги сім’ї.
             </p>
-            <a className="card-link" href="#contact">
-              Запитати про підтвердження →
-            </a>
           </article>
         </div>
       </section>
@@ -478,38 +489,35 @@ export default function UkrainianHomePage() {
         <SectionHeading
           label="Цивільна та господарська медіація"
           title="Приватні, договірні та бізнесові спори."
-          text="У цивільних і господарських справах медіація може допомогти швидше визначити умови порозуміння, розрахунків або завершення співпраці."
+          text="У цивільних і господарських справах медіація може допомогти швидше встановити умови порозуміння, розрахунків або завершення співпраці."
         />
 
         <div className="grid-3">
           <article className="card">
-            <span className="tag">Цивільні</span>
+            <span className="tag">Цивільна</span>
             <h3>Приватні спори</h3>
             <p>
-              Зобов’язання, претензії, договори, сусідські спори, майнові
-              питання та розрахунки.
+              Зобов’язання, претензії, договори, сусідські конфлікти, майнові
+              справи та розрахунки.
             </p>
           </article>
 
           <article className="card" id="business">
-            <span className="tag">Господарські</span>
-            <h3>Підприємці</h3>
+            <span className="tag">Господарська</span>
+            <h3>Спори між підприємцями</h3>
             <p>
               Платежі, відповідальність, договори, співпраця, завершення
-              бізнесових відносин і мирові домовленості.
+              бізнесових відносин і медіаційні угоди.
             </p>
           </article>
 
           <article className="card">
-            <span className="tag">Документ</span>
-            <h3>Спеціалізоване навчання</h3>
+            <span className="tag">Онлайн</span>
+            <h3>Дистанційний перший контакт</h3>
             <p>
-              Підготовка охоплює спеціалізоване навчання у сфері цивільної та
-              господарської медіації.
+              У міжнародних або багатомовних справах перший контакт може бути
+              організований дистанційно, залежно від характеру справи.
             </p>
-            <a className="card-link" href="#contact">
-              Запитати про підтвердження →
-            </a>
           </article>
         </div>
       </section>
@@ -523,7 +531,7 @@ export default function UkrainianHomePage() {
         <SectionHeading
           label="Локація"
           title="Медіація у Кракові — Kielecka 2/53, поруч із Rondo Mogilskie."
-          text="Професійна медіація у зручній локації в центрі Кракова, неподалік суду, державних установ і громадського транспорту."
+          text="Професійна медіація у зручній локації в центрі Кракова, близько до Окружного суду, державних установ і громадського транспорту."
         />
 
         <div className="location-rich">
@@ -532,24 +540,24 @@ export default function UkrainianHomePage() {
               <strong itemProp="name">
                 Фундація судової та позасудової медіації
               </strong>{" "}
-              проводить <strong>медіацію у Кракові</strong> за адресою{" "}
-              <strong>ul. Kielecka 2/53, 31-526 Kraków</strong>, поруч із{" "}
-              <strong>Rondo Mogilskie</strong>.
+              проводить <strong>медіації у Кракові</strong> за адресою{" "}
+              <strong>Kielecka 2/53, 31-526 Kraków</strong>, у безпосередній
+              близькості до <strong>Rondo Mogilskie</strong>.
             </p>
 
             <p>
               Це зручна локація для осіб, які шукають{" "}
-              <strong>медіатора у Кракові</strong> у сімейних, цивільних,
-              господарських або кримінальних справах. Офіс забезпечує спокійні
-              та нейтральні умови для розмови, впорядкування конфлікту і пошуку
-              порозуміння.
+              <strong>медіатора у Кракові</strong>, зокрема у{" "}
+              <strong>сімейних, цивільних, господарських і кримінальних справах</strong>.
+              Офіс забезпечує спокійні та нейтральні умови для розмови,
+              впорядкування конфлікту й досягнення порозуміння.
             </p>
 
             <p>
-              Офіс розташований приблизно{" "}
-              <strong>600 метрів від Окружного суду в Кракові</strong> на вул.
-              Przy Rondzie 7, що є зручним для сторін, адвокатів і осіб, які
-              беруть участь у судових або досудових справах.
+              Садиба знаходиться приблизно за{" "}
+              <strong>600 метрів від Окружного суду у Кракові</strong> на вул.
+              Przy Rondzie 7, що є зручним для сторін і представників, які
+              беруть участь у судових провадженнях.
             </p>
 
             <div className="location-advantages">
@@ -570,9 +578,9 @@ export default function UkrainianHomePage() {
 
           <div className="map-frame">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10244.231941308924!2d19.9621993!3d50.0664757!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b57a3e08b9d%3A0xf4ed3bbeb098c39!2sFundacja%20Mediacji%20Sądowej%20i%20Pozasądowej!5e0!3m2!1suk!2spl!4v1701936419454!5m2!1suk!2spl"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10244.231941308924!2d19.9621993!3d50.0664757!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b57a3e08b9d%3A0xf4ed3bbeb098c39!2sFundacja%20Mediacji%20Sądowej%20i%20Pozasądowej!5e0!3m2!1spl!2spl!4v1701936419454!5m2!1spl!2spl"
               loading="lazy"
-              title="Медіатор у Кракові — Фундація судової та позасудової медіації локація"
+              title="Медіатор у Кракові — локація Фундації"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
@@ -588,12 +596,37 @@ export default function UkrainianHomePage() {
             </a>
 
             <a className="location-cta-phone" href={`tel:${phoneHref}`}>
-              +48 {phone}
+              {phone}
             </a>
 
             <a className="location-cta-email" href={`mailto:${email}`}>
-              Записатися на медіацію
+              Домовитися про медіацію
             </a>
+          </div>
+
+          <meta itemProp="telephone" content="+48 883 040 483" />
+          <meta itemProp="email" content="mediacje@twojafundacja.pl" />
+          <meta itemProp="url" content={`${siteUrl}/uk`} />
+          <meta itemProp="areaServed" content="Kraków, Małopolska, Polska" />
+
+          <div
+            itemProp="address"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <meta itemProp="streetAddress" content="Kielecka 2/53" />
+            <meta itemProp="postalCode" content="31-526" />
+            <meta itemProp="addressLocality" content="Kraków" />
+            <meta itemProp="addressCountry" content="PL" />
+          </div>
+
+          <div
+            itemProp="geo"
+            itemScope
+            itemType="https://schema.org/GeoCoordinates"
+          >
+            <meta itemProp="latitude" content="50.0664757" />
+            <meta itemProp="longitude" content="19.9621993" />
           </div>
         </div>
       </section>
@@ -601,8 +634,8 @@ export default function UkrainianHomePage() {
       <section className="section" id="qualifications">
         <SectionHeading
           label="Кваліфікації"
-          title="Документи, що підтверджують підготовку медіатора."
-          text="Публічна сторінка показує вибрану інформацію про кваліфікації. Повні документи можуть бути пред’явлені для перевірки після обґрунтованого контакту з офісом."
+          title="Документи та сертифікати медіатора."
+          text="Вибрані документи підтверджують підготовку медіатора та Фундації до проведення судової, позасудової, сімейної та кримінальної медіації."
         />
 
         <div className="grid-4">
@@ -612,7 +645,6 @@ export default function UkrainianHomePage() {
               title={item.title}
               label={item.label}
               text={item.text}
-              href={item.href}
             />
           ))}
         </div>
@@ -621,8 +653,8 @@ export default function UkrainianHomePage() {
       <section className="section">
         <SectionHeading
           label="FAQ"
-          title="Найчастіші питання перед контактом із медіатором."
-          text="Коротко про конфіденційність, онлайн-медіацію, кримінальну медіацію та підготовку справи."
+          title="Найчастіші запитання перед контактом з медіатором."
+          text="Коротко про конфіденційність, онлайн-медіацію, кримінальну медіацію, витрати та підготовку справи."
         />
 
         <div className="faq-list">
@@ -639,18 +671,18 @@ export default function UkrainianHomePage() {
         <div className="contact-panel">
           <div>
             <p className="section-label">Контакт</p>
-            <h2>Опишіть справу та визначте можливий шлях медіації.</h2>
+            <h2>Опишіть справу та визначте можливий формат медіації.</h2>
             <p>
-              У повідомленні зазначте тип справи, кількість сторін, етап
-              провадження та інформацію, чи медіація має бути судовою,
-              позасудовою, стаціонарною або онлайн.
+              У повідомленні вкажіть вид справи, кількість сторін, етап
+              провадження, інформацію про можливе направлення судом або органом
+              та бажану форму медіації.
             </p>
           </div>
 
           <div className="contact-box">
             <span className="contact-line">
               <strong>Телефон:</strong>{" "}
-              <a href={`tel:${phoneHref}`}>+48 {phone}</a>
+              <a href={`tel:${phoneHref}`}>{phone}</a>
             </span>
             <span className="contact-line">
               <strong>E-mail:</strong> <a href={`mailto:${email}`}>{email}</a>
@@ -665,6 +697,12 @@ export default function UkrainianHomePage() {
               </a>
               <a className="button button-secondary" href={`mailto:${email}`}>
                 Надіслати e-mail
+              </a>
+              <a className="button button-secondary" href="/">
+                Польська версія
+              </a>
+              <a className="button button-secondary" href="/en">
+                Англійська версія
               </a>
             </div>
           </div>
@@ -687,7 +725,7 @@ export default function UkrainianHomePage() {
           <div>
             <span className="footer-title">Контакт</span>
             <span className="footer-line">
-              Телефон: <a href={`tel:${phoneHref}`}>+48 {phone}</a>
+              Телефон: <a href={`tel:${phoneHref}`}>{phone}</a>
             </span>
             <span className="footer-line">
               <a href={`mailto:${email}`}>{email}</a>
@@ -696,13 +734,17 @@ export default function UkrainianHomePage() {
           </div>
 
           <div>
-            <span className="footer-title">Мовні версії</span>
+            <span className="footer-title">Навігація</span>
             <a className="footer-link" href="/">
               Польська версія
             </a>
             <br />
             <a className="footer-link" href="/en">
-              English version
+              Англійська версія
+            </a>
+            <br />
+            <a className="footer-link" href="#contact">
+              Контакт
             </a>
           </div>
         </div>
