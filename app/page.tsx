@@ -1,3 +1,41 @@
+import type { Metadata } from "next";
+import {
+  localBusinessJsonLd,
+  seoDescriptions,
+  seoKeywords,
+  seoTitles,
+  siteUrl,
+  websiteJsonLd
+} from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: seoTitles.pl,
+  description: seoDescriptions.pl,
+  keywords: seoKeywords.pl,
+  alternates: {
+    canonical: "/",
+    languages: {
+      "pl-PL": "/",
+      en: "/en",
+      uk: "/uk",
+      "x-default": "/"
+    }
+  },
+  openGraph: {
+    title: seoTitles.pl,
+    description: seoDescriptions.pl,
+    url: siteUrl,
+    type: "website",
+    siteName: "Fundacja Mediacji Sądowej i Pozasądowej",
+    locale: "pl_PL"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seoTitles.pl,
+    description: seoDescriptions.pl
+  }
+};
+
 const phone = "883 040 483";
 const phoneHref = "+48883040483";
 const email = "mediacje@twojafundacja.pl";
@@ -198,55 +236,23 @@ function PdfPreviewCard({
 }
 
 export default function HomePage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Fundacja Mediacji Sądowej i Pozasądowej",
-    url: "https://www.twojafundacja.pl",
-    telephone: phoneHref,
-    email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "ul. Kielecka 2/53",
-      addressLocality: "Kraków",
-      postalCode: "31-526",
-      addressCountry: "PL"
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 50.0664757,
-      longitude: 19.9621993
-    },
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Kraków"
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Małopolska"
-      },
-      {
-        "@type": "Country",
-        name: "Polska"
-      }
-    ],
-    serviceType: [
-      "mediacje rodzinne",
-      "mediacje karne",
-      "mediacje cywilne",
-      "mediacje gospodarcze",
-      "mediacje online",
-      "mediacje sądowe",
-      "mediacje pozasądowe"
-    ]
-  };
+  const localBusinessSchema = localBusinessJsonLd();
+  const websiteSchema = websiteJsonLd();
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessSchema)
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema)
+        }}
       />
 
       <div className="topbar">
@@ -290,8 +296,8 @@ export default function HomePage() {
 
           <p className="lead">
             Mediacje rodzinne, karne, cywilne, gospodarcze i online. Poufna,
-            uporządkowana rozmowa prowadzona przez bezstronnego mediatora —
-            z możliwością wypracowania ugody i ograniczenia eskalacji sporu.
+            uporządkowana rozmowa prowadzona przez bezstronnego mediatora — z
+            możliwością wypracowania ugody i ograniczenia eskalacji sporu.
           </p>
 
           <div className="hero-actions">
@@ -461,11 +467,14 @@ export default function HomePage() {
             <span className="tag">Cennik</span>
             <h3>Ile kosztuje mediacja?</h3>
             <p>
-              Kalkulator i wpisy blogowe będą wyjaśniać koszty mediacji
-              sądowej, pozasądowej, cywilnej, rodzinnej i gospodarczej.
+              Kalkulator i wpisy blogowe wyjaśniają koszty mediacji sądowej,
+              pozasądowej, cywilnej, rodzinnej i gospodarczej.
             </p>
-            <a className="card-link" href="/cennik">
-              Sprawdź kalkulator →
+            <a
+              className="card-link"
+              href="/blog/ile-kosztuje-mediacja-sadowa-w-sprawie-cywilnej"
+            >
+              Czytaj wpis →
             </a>
           </article>
 
@@ -473,7 +482,7 @@ export default function HomePage() {
             <span className="tag">SEO PL / EN / UA</span>
             <h3>Centrum wiedzy o mediacji</h3>
             <p>
-              Blog będzie rozwijany po polsku, angielsku i ukraińsku, aby
+              Blog jest rozwijany po polsku, angielsku i ukraińsku, aby
               wzmacniać lokalne SEO dla Krakowa i Polski.
             </p>
             <a className="card-link" href="/blog">
@@ -520,7 +529,6 @@ export default function HomePage() {
               <span className="label">kontakt online</span>
               <span className="label">mediacja zdalna</span>
               <span className="label">wstępna kwalifikacja</span>
-              <span className="label">formularz AI później</span>
             </div>
           </div>
         </div>
@@ -640,7 +648,7 @@ export default function HomePage() {
 
           <article className="card" id="gospodarcze">
             <span className="tag">Gospodarcze</span>
-            <h3>Przedsiębiorcy</h3>
+            <h3>Spory między przedsiębiorcami</h3>
             <p>
               Płatności, odpowiedzialność, umowy, współpraca, zakończenie
               relacji biznesowej i ugody.
@@ -680,8 +688,8 @@ export default function HomePage() {
                 Fundacja Mediacji Sądowej i Pozasądowej
               </strong>{" "}
               prowadzi <strong>mediacje w Krakowie</strong> przy{" "}
-              <strong>ul. Kieleckiej 2/53, 31-526 Kraków</strong>, w bezpośrednim
-              sąsiedztwie <strong>Ronda Mogilskiego</strong>.
+              <strong>ul. Kieleckiej 2/53, 31-526 Kraków</strong>, w
+              bezpośrednim sąsiedztwie <strong>Ronda Mogilskiego</strong>.
             </p>
 
             <p>
@@ -694,10 +702,10 @@ export default function HomePage() {
 
             <p>
               Siedziba znajduje się około{" "}
-              <strong>600 metrów od Sądu Okręgowego w Krakowie</strong> przy ul.
-              Przy Rondzie 7, co stanowi istotne ułatwienie dla osób prowadzących
-              sprawy sądowe oraz dla pełnomocników korzystających z usług{" "}
-              <strong>mediatora sądowego w Krakowie</strong>.
+              <strong>600 metrów od Sądu Okręgowego w Krakowie</strong> przy
+              ul. Przy Rondzie 7, co stanowi istotne ułatwienie dla osób
+              prowadzących sprawy sądowe oraz dla pełnomocników korzystających z
+              usług <strong>mediatora sądowego w Krakowie</strong>.
             </p>
 
             <div className="location-advantages">
@@ -746,7 +754,7 @@ export default function HomePage() {
 
           <meta itemProp="telephone" content="+48 883 040 483" />
           <meta itemProp="email" content="mediacje@twojafundacja.pl" />
-          <meta itemProp="url" content="https://www.twojafundacja.pl/" />
+          <meta itemProp="url" content={siteUrl} />
           <meta itemProp="areaServed" content="Kraków, Małopolska, Polska" />
 
           <div
@@ -775,7 +783,7 @@ export default function HomePage() {
         <SectionHeading
           label="Kwalifikacje"
           title="Dokumenty i certyfikaty mediatora."
-          text="Wybrane dokumenty są widoczne jako mini-podgląd PDF. Po najechaniu karta delikatnie się powiększa, a po kliknięciu dokument otwiera się w nowej karcie."
+          text="Poniżej znajdują się wybrane dokumenty potwierdzające przygotowanie mediatora i Fundacji do prowadzenia mediacji sądowych, pozasądowych, rodzinnych oraz karnych."
         />
 
         <div className="pdf-preview-grid">
