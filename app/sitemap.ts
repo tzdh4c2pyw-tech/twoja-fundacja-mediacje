@@ -1,9 +1,17 @@
 import type { MetadataRoute } from "next";
+import { getBlogPosts } from "@/lib/blog";
 
 const baseUrl = "https://www.twojafundacja.pl";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+
+  const blogPosts = getBlogPosts().map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.72
+  }));
 
   return [
     {
@@ -56,6 +64,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.75
-    }
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.78
+    },
+    ...blogPosts
   ];
 }
