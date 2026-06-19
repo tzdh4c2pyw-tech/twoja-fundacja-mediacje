@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   title: seoTitles.pl,
   description: seoDescriptions.pl,
   keywords: seoKeywords.pl,
+
+  verification: {
+    google: "IRGY-E1KJFL1eUQihR952TtnvoTINcS0GzMSq0XJbfQ"
+  },
+
   alternates: {
     canonical: "/",
     languages: {
@@ -21,6 +26,7 @@ export const metadata: Metadata = {
       "x-default": "/"
     }
   },
+
   openGraph: {
     title: seoTitles.pl,
     description: seoDescriptions.pl,
@@ -29,6 +35,7 @@ export const metadata: Metadata = {
     siteName: "Fundacja Mediacji Sądowej i Pozasądowej",
     locale: "pl_PL"
   },
+
   twitter: {
     card: "summary_large_image",
     title: seoTitles.pl,
@@ -692,8 +699,10 @@ export default function HomePage() {
             <p>
               To dogodna lokalizacja dla osób poszukujących{" "}
               <strong>mediatora w Krakowie</strong>, zarówno w sprawach{" "}
-              <strong>rodzinnych, cywilnych, gospodarczych, jak i karnych</strong>.
-              Kancelaria zapewnia spokojne, neutralne warunki sprzyjające
+              <strong>
+                rodzinnych, cywilnych, gospodarczych, jak i karnych
+              </strong>
+              . Kancelaria zapewnia spokojne, neutralne warunki sprzyjające
               rozmowie, uporządkowaniu konfliktu i osiągnięciu porozumienia.
             </p>
 
