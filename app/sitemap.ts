@@ -46,6 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     },
     {
+      url: `${baseUrl}/cennik`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9
+    },
+    {
       url: `${baseUrl}/kwalifikacje`,
       lastModified: now,
       changeFrequency: "monthly",

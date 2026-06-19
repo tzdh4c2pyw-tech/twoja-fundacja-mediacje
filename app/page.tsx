@@ -104,6 +104,11 @@ const faqItems = [
       "Tak. Fundacja posiada wpis do wykazu instytucji uprawnionych do prowadzenia postępowania mediacyjnego w sprawach karnych."
   },
   {
+    question: "Czy mediacja karna jest bezpłatna dla stron?",
+    answer:
+      "Tak. W sprawach karnych koszty mediacji nie obciążają stron postępowania. Wynagrodzenie mediatora i zwrot wydatków ponosi Skarb Państwa."
+  },
+  {
     question: "Jak przygotować się do pierwszego kontaktu?",
     answer:
       "Warto podać rodzaj sprawy, liczbę stron, etap postępowania, informację o ewentualnym skierowaniu z sądu lub organu oraz preferowany tryb kontaktu."
@@ -262,6 +267,7 @@ export default function HomePage() {
             <a href="#zakres">Zakres</a>
             <a href="#proces">Jak działa</a>
             <a href="#online">Online</a>
+            <a href="/cennik">Cennik</a>
             <a href="#lokalizacja">Lokalizacja</a>
             <a href="#kwalifikacje">Kwalifikacje</a>
             <a href="#kontakt">Kontakt</a>
@@ -294,6 +300,9 @@ export default function HomePage() {
             <a className="button button-secondary" href={`mailto:${email}`}>
               Wyślij opis sprawy
             </a>
+            <a className="button button-secondary" href="/cennik">
+              Sprawdź cennik
+            </a>
             <a className="button button-secondary" href="#kwalifikacje">
               Sprawdź kwalifikacje
             </a>
@@ -306,11 +315,11 @@ export default function HomePage() {
             </div>
             <div>
               <strong>Mediacje karne</strong>
-              <span>Fundacja wpisana do wykazu</span>
+              <span>0 zł dla stron postępowania</span>
             </div>
             <div>
-              <strong>Online</strong>
-              <span>wstępna konsultacja zdalna</span>
+              <strong>Kalkulator kosztów</strong>
+              <span>cennik mediacji sądowej i pozasądowej</span>
             </div>
           </div>
         </div>
@@ -341,7 +350,7 @@ export default function HomePage() {
           </div>
           <div className="trust-item">
             <strong>Mediacje karne</strong>
-            wpis Fundacji do wykazu instytucji
+            koszt mediacji ponosi Skarb Państwa
           </div>
           <div className="trust-item">
             <strong>Kraków</strong>
@@ -372,6 +381,52 @@ export default function HomePage() {
               </a>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section" id="cennik">
+        <SectionHeading
+          label="Cennik"
+          title="Koszty mediacji i kalkulator opłat."
+          text="Na osobnej podstronie znajdziesz kalkulator kosztów mediacji sądowej, pozasądowej oraz informację, że mediacja karna jest bezpłatna dla stron."
+        />
+
+        <div className="grid-3">
+          <article className="card card-gold">
+            <span className="tag">Cywilne</span>
+            <h3>Sprawy majątkowe</h3>
+            <p>
+              Kalkulator oblicza wynagrodzenie mediatora według wartości
+              przedmiotu sporu: od minimum 300 zł do maksimum 8000 zł.
+            </p>
+            <a className="card-link" href="/cennik">
+              Oblicz koszt →
+            </a>
+          </article>
+
+          <article className="card">
+            <span className="tag">Rodzinne</span>
+            <h3>Sprawy niemajątkowe</h3>
+            <p>
+              Kalkulator uwzględnia pierwsze i kolejne posiedzenia mediacyjne
+              oraz limit wynagrodzenia w sprawach niemajątkowych.
+            </p>
+            <a className="card-link" href="/cennik">
+              Sprawdź cennik →
+            </a>
+          </article>
+
+          <article className="card card-dark">
+            <span className="tag">Karne</span>
+            <h3>0 zł dla stron</h3>
+            <p>
+              W sprawach karnych koszty mediacji nie obciążają stron
+              postępowania. Wynagrodzenie mediatora ponosi Skarb Państwa.
+            </p>
+            <a className="card-link" href="/cennik">
+              Zobacz podstawy →
+            </a>
+          </article>
         </div>
       </section>
 
@@ -422,7 +477,7 @@ export default function HomePage() {
         <SectionHeading
           label="Mediacje karne"
           title="Fundacja wpisana do wykazu mediacji karnych."
-          text="Mediacje karne wymagają szczególnej ostrożności, neutralności i rozumienia funkcji postępowania."
+          text="Mediacje karne wymagają szczególnej ostrożności, neutralności i rozumienia funkcji postępowania. Dla stron postępowania mediacja karna jest bezpłatna."
         />
 
         <div className="grid-3">
@@ -437,13 +492,16 @@ export default function HomePage() {
           </article>
 
           <article className="card card-gold">
-            <span className="tag">Procedura</span>
-            <h3>Na podstawie skierowania</h3>
+            <span className="tag">Koszty</span>
+            <h3>0 zł dla stron</h3>
             <p>
-              W sprawach karnych mediacja odbywa się w określonym trybie, z
-              zachowaniem poufności, neutralności mediatora i właściwej
-              dokumentacji.
+              W sprawach karnych koszty postępowania mediacyjnego nie obciążają
+              stron. Wynagrodzenie mediatora i zwrot wydatków ponosi Skarb
+              Państwa.
             </p>
+            <a className="card-link" href="/cennik">
+              Zobacz cennik →
+            </a>
           </article>
 
           <article className="card card-dark">
@@ -527,7 +585,7 @@ export default function HomePage() {
             </p>
           </article>
 
-          <article className="card">
+          <article className="card" id="gospodarcze">
             <span className="tag">Gospodarcze</span>
             <h3>Przedsiębiorcy</h3>
             <p>
@@ -537,19 +595,14 @@ export default function HomePage() {
           </article>
 
           <article className="card">
-            <span className="tag">Dokument</span>
-            <h3>Szkolenie specjalistyczne</h3>
+            <span className="tag">Cennik</span>
+            <h3>Kalkulator kosztów</h3>
             <p>
-              Przygotowanie obejmuje szkolenie specjalistyczne z zakresu
-              mediacji cywilnych i gospodarczych.
+              Dla spraw majątkowych kalkulator pozwala oszacować koszt mediacji
+              według wartości przedmiotu sporu.
             </p>
-            <a
-              className="card-link"
-              href="/foto/zaswiadczenie-mediacje-cywilne-gospodarcze-vadym-rekel-2017.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Otwórz dokument →
+            <a className="card-link" href="/cennik">
+              Oblicz koszt →
             </a>
           </article>
         </div>
@@ -688,6 +741,9 @@ export default function HomePage() {
           <a className="button button-secondary" href="/kwalifikacje">
             Zobacz wszystkie kwalifikacje
           </a>
+          <a className="button button-secondary" href="/cennik">
+            Sprawdź cennik mediacji
+          </a>
         </div>
       </section>
 
@@ -695,7 +751,7 @@ export default function HomePage() {
         <SectionHeading
           label="FAQ"
           title="Najczęstsze pytania przed kontaktem z mediatorem."
-          text="Krótko o poufności, mediacji online, mediacjach karnych i przygotowaniu sprawy."
+          text="Krótko o poufności, mediacji online, mediacjach karnych, kosztach i przygotowaniu sprawy."
         />
 
         <div className="faq-list">
@@ -714,9 +770,10 @@ export default function HomePage() {
             <p className="section-label">Kontakt</p>
             <h2>Opisz sprawę i ustal możliwy tryb mediacji.</h2>
             <p>
-              W wiadomości podaj rodzaj sprawy, liczbę stron, etap postępowania
-              oraz informację, czy mediacja ma być sądowa, pozasądowa,
-              stacjonarna czy online.
+              W wiadomości podaj rodzaj sprawy, liczbę stron, etap postępowania,
+              informację o ewentualnym skierowaniu z sądu albo organu oraz
+              preferowany tryb mediacji. W sprawach kosztów możesz skorzystać
+              także z kalkulatora mediacji.
             </p>
           </div>
 
@@ -738,6 +795,9 @@ export default function HomePage() {
               </a>
               <a className="button button-secondary" href={`mailto:${email}`}>
                 Wyślij e-mail
+              </a>
+              <a className="button button-secondary" href="/cennik">
+                Cennik mediacji
               </a>
             </div>
           </div>
@@ -768,7 +828,15 @@ export default function HomePage() {
           </div>
 
           <div>
-            <span className="footer-title">Wersje językowe</span>
+            <span className="footer-title">Nawigacja</span>
+            <a className="footer-link" href="/cennik">
+              Cennik mediacji
+            </a>
+            <br />
+            <a className="footer-link" href="/kwalifikacje">
+              Kwalifikacje
+            </a>
+            <br />
             <a className="footer-link" href="/en">
               English version
             </a>
