@@ -268,6 +268,7 @@ export default function HomePage() {
             <a href="#proces">Jak działa</a>
             <a href="#online">Online</a>
             <a href="/cennik">Cennik</a>
+            <a href="/blog">Blog</a>
             <a href="#lokalizacja">Lokalizacja</a>
             <a href="#kwalifikacje">Kwalifikacje</a>
             <a href="#kontakt">Kontakt</a>
@@ -303,6 +304,9 @@ export default function HomePage() {
             <a className="button button-secondary" href="/cennik">
               Sprawdź cennik
             </a>
+            <a className="button button-secondary" href="/blog">
+              Czytaj blog
+            </a>
             <a className="button button-secondary" href="#kwalifikacje">
               Sprawdź kwalifikacje
             </a>
@@ -318,8 +322,8 @@ export default function HomePage() {
               <span>0 zł dla stron postępowania</span>
             </div>
             <div>
-              <strong>Kalkulator kosztów</strong>
-              <span>cennik mediacji sądowej i pozasądowej</span>
+              <strong>Blog SEO</strong>
+              <span>wiedza o mediacji, kosztach i procedurach</span>
             </div>
           </div>
         </div>
@@ -425,6 +429,55 @@ export default function HomePage() {
             </p>
             <a className="card-link" href="/cennik">
               Zobacz podstawy →
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section className="section" id="blog">
+        <SectionHeading
+          label="Blog"
+          title="Artykuły o mediacji, kosztach i procedurach."
+          text="Blog rozwija widoczność strony w Google i wyjaśnia użytkownikom najczęstsze pytania dotyczące mediacji rodzinnych, karnych, cywilnych, gospodarczych i online."
+        />
+
+        <div className="grid-3">
+          <article className="card card-gold">
+            <span className="tag">Mediacje karne</span>
+            <h3>Czy mediacja karna jest bezpłatna dla stron?</h3>
+            <p>
+              Pierwszy wpis wyjaśnia, kto ponosi koszty mediacji karnej i kiedy
+              strony nie płacą za udział w postępowaniu mediacyjnym.
+            </p>
+            <a
+              className="card-link"
+              href="/blog/czy-mediacja-karna-jest-bezplatna-dla-stron"
+            >
+              Czytaj wpis →
+            </a>
+          </article>
+
+          <article className="card">
+            <span className="tag">Cennik</span>
+            <h3>Ile kosztuje mediacja?</h3>
+            <p>
+              Kalkulator i wpisy blogowe będą wyjaśniać koszty mediacji
+              sądowej, pozasądowej, cywilnej, rodzinnej i gospodarczej.
+            </p>
+            <a className="card-link" href="/cennik">
+              Sprawdź kalkulator →
+            </a>
+          </article>
+
+          <article className="card card-dark">
+            <span className="tag">SEO PL / EN / UA</span>
+            <h3>Centrum wiedzy o mediacji</h3>
+            <p>
+              Blog będzie rozwijany po polsku, angielsku i ukraińsku, aby
+              wzmacniać lokalne SEO dla Krakowa i Polski.
+            </p>
+            <a className="card-link" href="/blog">
+              Przejdź do bloga →
             </a>
           </article>
         </div>
@@ -744,6 +797,9 @@ export default function HomePage() {
           <a className="button button-secondary" href="/cennik">
             Sprawdź cennik mediacji
           </a>
+          <a className="button button-secondary" href="/blog">
+            Czytaj blog
+          </a>
         </div>
       </section>
 
@@ -799,6 +855,9 @@ export default function HomePage() {
               <a className="button button-secondary" href="/cennik">
                 Cennik mediacji
               </a>
+              <a className="button button-secondary" href="/blog">
+                Blog
+              </a>
             </div>
           </div>
         </div>
@@ -831,6 +890,10 @@ export default function HomePage() {
             <span className="footer-title">Nawigacja</span>
             <a className="footer-link" href="/cennik">
               Cennik mediacji
+            </a>
+            <br />
+            <a className="footer-link" href="/blog">
+              Blog o mediacji
             </a>
             <br />
             <a className="footer-link" href="/kwalifikacje">
