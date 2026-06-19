@@ -252,9 +252,6 @@ export default function EnglishHomePage() {
             <a href="#qualifications">Qualifications</a>
             <a href="#contact">Contact</a>
             <LanguageSwitcher />
-            <a className="nav-phone" href={`tel:${phoneHref}`}>
-              {phone}
-            </a>
           </div>
         </nav>
       </div>

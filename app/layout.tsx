@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import FloatingContactWidget from "@/app/components/FloatingContactWidget";
+import FloatingContactWidget from "./components/FloatingContactWidget";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -213,6 +213,7 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema)
           }}
         />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

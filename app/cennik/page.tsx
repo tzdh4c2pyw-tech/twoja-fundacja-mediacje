@@ -163,9 +163,6 @@ export default function PricingPage() {
             <a href="#podstawa-prawna">Podstawa prawna</a>
             <a href="#faq">FAQ</a>
             <a href="#kontakt">Kontakt</a>
-            <a className="nav-phone" href={`tel:${phoneHref}`}>
-              {phone}
-            </a>
           </div>
         </nav>
       </div>

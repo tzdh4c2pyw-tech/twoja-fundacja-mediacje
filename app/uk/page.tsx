@@ -252,9 +252,6 @@ export default function UkrainianHomePage() {
             <a href="#qualifications">Кваліфікації</a>
             <a href="#contact">Контакт</a>
             <LanguageSwitcher />
-            <a className="nav-phone" href={`tel:${phoneHref}`}>
-              {phone}
-            </a>
           </div>
         </nav>
       </div>

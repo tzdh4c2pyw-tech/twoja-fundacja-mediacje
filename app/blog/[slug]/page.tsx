@@ -155,9 +155,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <a href="/cennik">Cennik</a>
             <a href="/kwalifikacje">Kwalifikacje</a>
             <a href="/#kontakt">Kontakt</a>
-            <a className="nav-phone" href={`tel:${phoneHref}`}>
-              {phone}
-            </a>
           </div>
         </nav>
       </div>

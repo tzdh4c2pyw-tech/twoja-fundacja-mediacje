@@ -45,9 +45,6 @@ export default function BlogPage() {
             <a href="/kwalifikacje">Kwalifikacje</a>
             <a href="/blog">Blog</a>
             <a href="/#kontakt">Kontakt</a>
-            <a className="nav-phone" href={`tel:${phoneHref}`}>
-              {phone}
-            </a>
           </div>
         </nav>
       </div>
