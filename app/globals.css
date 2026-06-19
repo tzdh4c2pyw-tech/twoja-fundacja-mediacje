@@ -1178,3 +1178,38 @@ h1 {
     height: 300px;
   }
 }
+.card-dark:hover {
+  background: linear-gradient(150deg, var(--green), var(--green-dark));
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.card-dark:hover h3,
+.card-dark:hover p,
+.card-dark:hover .card-link {
+  color: #ffffff;
+}
+
+.card-dark:hover .tag {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.card-petrol:hover {
+  background: linear-gradient(150deg, rgba(36, 63, 74, 0.97), rgba(20, 43, 53, 0.98));
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.card-petrol:hover h3,
+.card-petrol:hover p,
+.card-petrol:hover .card-link {
+  color: #ffffff;
+}
+
+.card-petrol:hover .tag {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.18);
+}
