@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { getBlogPosts } from "@/lib/blog";
 
 const baseUrl = "https://twoja-fundacja-mediacje.vercel.app";
 
-const routes = [
+const staticRoutes = [
   "",
   "/mediator-krakow",
   "/mediacje-rodzinne-krakow",
@@ -16,11 +17,17 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const blogRoutes = getBlogPosts("pl").map((post) => `/blog/${post.slug}`);
+
+  const routes = [...staticRoutes, ...blogRoutes];
+
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency:
-      route === "" || route === "/blog" ? "weekly" : "monthly",
+      route === "" || route === "/blog" || route.startsWith("/blog/")
+        ? "weekly"
+        : "monthly",
     priority:
       route === ""
         ? 1
@@ -30,10 +37,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
             ? 0.9
             : route === "/mediacje-karne-krakow"
               ? 0.9
-              : route === "/cennik"
-                ? 0.85
-                : route === "/blog"
-                  ? 0.8
-                  : 0.6,
+              : route === "/mediacje-gospodarcze-krakow"
+                ? 0.9
+                : route === "/mediacje-online"
+                  ? 0.88
+                  : route === "/cennik"
+                    ? 0.85
+                    : route === "/blog"
+                      ? 0.8
+                      : route.startsWith("/blog/")
+                        ? 0.72
+                        : 0.6,
   }));
 }
