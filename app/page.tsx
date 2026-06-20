@@ -562,6 +562,18 @@ export default function HomePage() {
           Zobacz mediacje karne →
         </a>
       </article>
+
+      <article className="card">
+        <span className="tag">Sprawy gospodarcze</span>
+        <h3>Mediacje gospodarcze Kraków</h3>
+        <p>
+          Spory firm, umowy, rozliczenia, zapłata, kontrahenci, wspólnicy i
+          ugody biznesowe.
+        </p>
+        <a className="text-link" href="/mediacje-gospodarcze-krakow">
+          Zobacz mediacje gospodarcze →
+        </a>
+      </article>
     </div>
   </div>
 </section>
