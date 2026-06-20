@@ -513,7 +513,60 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section compact" id="online">
+      
+<section className="section">
+  <div className="feature green">
+    <div>
+      <p className="section-label">Mediacje w Krakowie</p>
+      <h2>Najczęściej wybierane mediacje</h2>
+      <p>
+        Sprawdź najważniejsze obszary mediacji: pomoc mediatora w Krakowie,
+        mediacje rodzinne oraz mediacje karne. Każda z tych stron opisuje
+        konkretny typ sprawy, przygotowanie do mediacji i możliwe formy kontaktu.
+      </p>
+    </div>
+
+    <div className="cards three">
+      <article className="card">
+        <span className="tag">Mediator Kraków</span>
+        <h3>Mediator sądowy i pozasądowy</h3>
+        <p>
+          Mediacje sądowe, pozasądowe, rodzinne, karne, cywilne, gospodarcze
+          oraz online w Krakowie.
+        </p>
+        <a className="text-link" href="/mediator-krakow">
+          Zobacz stronę mediatora →
+        </a>
+      </article>
+
+      <article className="card">
+        <span className="tag">Sprawy rodzinne</span>
+        <h3>Mediacje rodzinne Kraków</h3>
+        <p>
+          Rozwód, alimenty, kontakty z dzieckiem, plan wychowawczy, opieka i
+          porozumienie rodzicielskie.
+        </p>
+        <a className="text-link" href="/mediacje-rodzinne-krakow">
+          Zobacz mediacje rodzinne →
+        </a>
+      </article>
+
+      <article className="card">
+        <span className="tag">Sprawy karne</span>
+        <h3>Mediacje karne Kraków</h3>
+        <p>
+          Rozmowa pokrzywdzonego i sprawcy, naprawienie szkody, przeprosiny,
+          zadośćuczynienie i ugoda.
+        </p>
+        <a className="text-link" href="/mediacje-karne-krakow">
+          Zobacz mediacje karne →
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section className="section compact" id="online">
         <div className="feature green">
           <div>
             <p className="section-label">Online i przygotowanie sprawy</p>
