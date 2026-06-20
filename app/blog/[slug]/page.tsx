@@ -319,6 +319,94 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </article>
 
+      <section className="section">
+        <div className="feature green">
+          <div>
+            <p className="section-label">Powiązane mediacje</p>
+            <h2>Sprawdź strony usługowe mediatora.</h2>
+            <p>
+              Jeżeli czytasz artykuł o mediacji, możesz przejść bezpośrednio do
+              odpowiedniej strony usługowej: mediatora w Krakowie, mediacji
+              rodzinnych, karnych, gospodarczych, online albo cennika.
+            </p>
+          </div>
+
+          <div className="cards three">
+            <article className="card">
+              <span className="tag">Mediator Kraków</span>
+              <h3>Mediator sądowy i pozasądowy</h3>
+              <p>
+                Mediacje sądowe, pozasądowe, rodzinne, karne, cywilne,
+                gospodarcze i online w Krakowie.
+              </p>
+              <a className="text-link" href="/mediator-krakow">
+                Zobacz stronę mediatora →
+              </a>
+            </article>
+
+            <article className="card">
+              <span className="tag">Rodzina</span>
+              <h3>Mediacje rodzinne Kraków</h3>
+              <p>
+                Rozwód, alimenty, kontakty z dzieckiem, plan wychowawczy,
+                opieka i porozumienie rodzicielskie.
+              </p>
+              <a className="text-link" href="/mediacje-rodzinne-krakow">
+                Zobacz mediacje rodzinne →
+              </a>
+            </article>
+
+            <article className="card">
+              <span className="tag">Sprawy karne</span>
+              <h3>Mediacje karne Kraków</h3>
+              <p>
+                Rozmowa pokrzywdzonego i sprawcy, naprawienie szkody,
+                przeprosiny, zadośćuczynienie i ugoda.
+              </p>
+              <a className="text-link" href="/mediacje-karne-krakow">
+                Zobacz mediacje karne →
+              </a>
+            </article>
+
+            <article className="card">
+              <span className="tag">Biznes</span>
+              <h3>Mediacje gospodarcze Kraków</h3>
+              <p>
+                Spory firm, umowy, rozliczenia, zapłata, kontrahenci,
+                wspólnicy i ugody biznesowe.
+              </p>
+              <a className="text-link" href="/mediacje-gospodarcze-krakow">
+                Zobacz mediacje gospodarcze →
+              </a>
+            </article>
+
+            <article className="card">
+              <span className="tag">Online</span>
+              <h3>Mediacje online</h3>
+              <p>
+                Mediacje rodzinne, gospodarcze i cywilne prowadzone zdalnie,
+                gdy strony mieszkają w różnych miejscach.
+              </p>
+              <a className="text-link" href="/mediacje-online">
+                Zobacz mediacje online →
+              </a>
+            </article>
+
+            <article className="card">
+              <span className="tag">Koszty</span>
+              <h3>Cennik mediacji</h3>
+              <p>
+                Sprawdź podstawowe informacje o kosztach mediacji sądowej,
+                pozasądowej, rodzinnej, cywilnej i gospodarczej.
+              </p>
+              <a className="text-link" href="/cennik">
+                Zobacz cennik →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {relatedPosts.length > 0 && (
         <section className="section">
           <div className="section-heading">
