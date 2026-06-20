@@ -26,11 +26,6 @@ const faq = [
     answer:
       "Tak. W wielu sprawach gospodarczych mediacje online są praktycznym rozwiązaniem, szczególnie gdy strony prowadzą działalność w różnych miejscach.",
   },
-  {
-    question: "Co może zawierać ugoda gospodarcza?",
-    answer:
-      "Ugoda może obejmować harmonogram spłaty, zmniejszenie lub rozłożenie należności, sposób wykonania umowy, zwrot rzeczy, zmianę zasad współpracy albo inne ustalenia przyjęte przez strony.",
-  },
 ];
 
 export default function MediacjeGospodarczeKrakowPage() {
