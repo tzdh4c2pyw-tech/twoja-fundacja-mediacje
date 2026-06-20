@@ -8,6 +8,7 @@ const routes = [
   "/mediacje-rodzinne-krakow",
   "/mediacje-karne-krakow",
   "/mediacje-gospodarcze-krakow",
+  "/mediacje-online",
   "/cennik",
   "/blog",
   "/en",

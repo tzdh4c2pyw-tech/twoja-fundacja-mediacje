@@ -574,6 +574,18 @@ export default function HomePage() {
           Zobacz mediacje gospodarcze →
         </a>
       </article>
+
+      <article className="card">
+        <span className="tag">Online</span>
+        <h3>Mediacje online</h3>
+        <p>
+          Mediacje rodzinne, gospodarcze i cywilne prowadzone zdalnie, gdy strony
+          mieszkają w różnych miejscach albo potrzebują szybkiego kontaktu.
+        </p>
+        <a className="text-link" href="/mediacje-online">
+          Zobacz mediacje online →
+        </a>
+      </article>
     </div>
   </div>
 </section>
