@@ -1499,3 +1499,237 @@ h1 {
     transition-duration: 0.001ms !important;
   }
 }
+/* Family mediation landing page */
+
+.family-page {
+  background: #f7f2e8;
+  color: #17211c;
+}
+
+.family-container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.family-narrow {
+  width: min(820px, calc(100% - 40px));
+}
+
+.family-hero {
+  padding: 92px 0 76px;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(20, 83, 45, 0.12), transparent 32%),
+    linear-gradient(135deg, #f7f2e8 0%, #f1eadc 100%);
+  border-bottom: 1px solid rgba(23, 33, 28, 0.12);
+}
+
+.family-eyebrow {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #315d43;
+}
+
+.family-hero h1 {
+  max-width: 880px;
+  margin: 0;
+  font-size: clamp(42px, 7vw, 82px);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  color: #101812;
+}
+
+.family-lead {
+  max-width: 790px;
+  margin: 28px 0 0;
+  font-size: 19px;
+  line-height: 1.75;
+  color: #344238;
+}
+
+.family-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.family-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.family-button:hover {
+  transform: translateY(-1px);
+}
+
+.family-button-primary {
+  background: #123524;
+  color: #ffffff;
+}
+
+.family-button-primary:hover {
+  background: #0d271a;
+}
+
+.family-button-secondary {
+  border: 1px solid rgba(18, 53, 36, 0.28);
+  color: #123524;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.family-section {
+  padding: 72px 0;
+}
+
+.family-section-alt {
+  background: rgba(255, 255, 255, 0.42);
+  border-top: 1px solid rgba(23, 33, 28, 0.1);
+  border-bottom: 1px solid rgba(23, 33, 28, 0.1);
+}
+
+.family-section-title {
+  max-width: 760px;
+  margin: 0 0 32px;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: #101812;
+}
+
+.family-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.family-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.family-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.family-card {
+  border: 1px solid rgba(23, 33, 28, 0.12);
+  border-radius: 28px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 18px 50px rgba(23, 33, 28, 0.06);
+}
+
+.family-card h2,
+.family-card h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #101812;
+}
+
+.family-card p {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #3b463f;
+}
+
+.family-step {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #315d43;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.family-faq-list {
+  display: grid;
+  gap: 18px;
+}
+
+.family-link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.family-link-card {
+  display: block;
+  padding: 24px;
+  border: 1px solid rgba(23, 33, 28, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.64);
+  color: #123524;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.family-link-card:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+}
+
+.family-cta {
+  padding: 76px 0;
+  background: #102016;
+  color: #ffffff;
+}
+
+.family-cta h2 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.family-cta p {
+  max-width: 760px;
+  margin: 24px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.family-button-light {
+  background: #ffffff;
+  color: #102016;
+}
+
+.family-button-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+@media (max-width: 860px) {
+  .family-grid-2,
+  .family-grid-3,
+  .family-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .family-hero {
+    padding: 64px 0 54px;
+  }
+
+  .family-section {
+    padding: 54px 0;
+  }
+
+  .family-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+}
