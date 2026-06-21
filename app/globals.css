@@ -1881,3 +1881,151 @@ h1 {
   border-color: rgba(23, 55, 47, 0.18) !important;
 }
 
+
+/* Contrast fix: cards on dark green sections */
+.feature.green .card,
+.contact-box .card,
+.hero-side .card,
+.cards.three .card {
+  background: #f7f1e7 !important;
+  color: #17372f !important;
+  border: 1px solid rgba(23, 55, 47, 0.18) !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18) !important;
+}
+
+.feature.green .card h3,
+.contact-box .card h3,
+.hero-side .card h3,
+.cards.three .card h3 {
+  color: #17372f !important;
+}
+
+.feature.green .card p,
+.contact-box .card p,
+.hero-side .card p,
+.cards.three .card p {
+  color: #36554c !important;
+}
+
+.feature.green .card .tag,
+.contact-box .card .tag,
+.hero-side .card .tag,
+.cards.three .card .tag {
+  color: #17372f !important;
+  background: rgba(201, 164, 92, 0.22) !important;
+  border-color: rgba(201, 164, 92, 0.42) !important;
+}
+
+.feature.green .card a,
+.contact-box .card a,
+.hero-side .card a,
+.cards.three .card a,
+.feature.green .text-link,
+.cards.three .text-link {
+  color: #17372f !important;
+  font-weight: 800 !important;
+}
+
+/* Contact section contrast */
+.contact-panel {
+  background: #17372f !important;
+  color: #f7f1e7 !important;
+}
+
+.contact-panel h2,
+.contact-panel h3,
+.contact-panel strong {
+  color: #ffffff !important;
+}
+
+.contact-panel p,
+.contact-panel .contact-line {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.contact-panel a {
+  color: #ffffff;
+}
+
+/* Fix overly pale cards inside contact panel */
+.contact-panel .card {
+  background: #f7f1e7 !important;
+  color: #17372f !important;
+}
+
+.contact-panel .card h3 {
+  color: #17372f !important;
+}
+
+.contact-panel .card p {
+  color: #36554c !important;
+}
+
+/* Better readable light cards generally */
+.card:not(.card-dark):not(.card-petrol):not(.card-gold) {
+  background: #fbf6ee;
+  color: #17372f;
+}
+
+.card:not(.card-dark):not(.card-petrol):not(.card-gold) h3 {
+  color: #17372f;
+}
+
+.card:not(.card-dark):not(.card-petrol):not(.card-gold) p {
+  color: #405e55;
+}
+
+/* Stronger dark and gold card readability */
+.card-gold {
+  background: #d5b36a !important;
+  color: #17372f !important;
+}
+
+.card-gold h3,
+.card-gold p,
+.card-gold a,
+.card-gold .tag {
+  color: #17372f !important;
+}
+
+.card-dark,
+.card-petrol {
+  color: #ffffff !important;
+}
+
+.card-dark h3,
+.card-dark p,
+.card-dark a,
+.card-petrol h3,
+.card-petrol p,
+.card-petrol a {
+  color: #ffffff !important;
+}
+
+/* Dedicated contact page / hero badge readability */
+.hero-badge {
+  background: #f7f1e7 !important;
+  color: #17372f !important;
+  border: 1px solid rgba(23, 55, 47, 0.16) !important;
+}
+
+.hero-badge strong {
+  color: #17372f !important;
+}
+
+.hero-badge span {
+  color: #36554c !important;
+}
+
+/* Buttons should remain clearly visible */
+.button-primary {
+  background: #c9a45c !important;
+  color: #102820 !important;
+}
+
+.button-secondary {
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #17372f !important;
+  border-color: rgba(23, 55, 47, 0.18) !important;
+}
+
