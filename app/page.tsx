@@ -752,6 +752,18 @@ export default function HomePage() {
           Zobacz mediacje online →
         </a>
       </article>
+
+      <article className="card card-gold">
+        <span className="tag">Dla pełnomocników</span>
+        <h3>Mediacje dla adwokatów i radców prawnych</h3>
+        <p>
+          Kontakt organizacyjny dla pełnomocników prowadzących sprawy rodzinne,
+          cywilne, gospodarcze i karne.
+        </p>
+        <a className="text-link" href="/mediacje-dla-pelnomocnikow">
+          Zobacz stronę dla pełnomocników →
+        </a>
+      </article>
     </div>
   </div>
 </section>

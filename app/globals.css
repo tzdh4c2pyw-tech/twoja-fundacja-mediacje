@@ -2153,3 +2153,31 @@ h1 {
   }
 }
 
+
+/* Rich list for service landing pages */
+.rich-list {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rich-list li {
+  position: relative;
+  padding: 12px 14px 12px 38px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  line-height: 1.55;
+}
+
+.rich-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  color: #d5b36a;
+  font-weight: 900;
+}
+
