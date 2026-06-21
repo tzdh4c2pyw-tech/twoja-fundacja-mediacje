@@ -42,7 +42,7 @@ export default function BlogPage() {
           <div className="nav-links">
             <a href="/">Strona główna</a>
             <a href="/cennik">Cennik</a>
-            <a href="/kwalifikacje">Kwalifikacje</a>
+            <a href="/#kwalifikacje">Kwalifikacje</a>
             <a href="/blog">Blog</a>
             <a href="/#kontakt">Kontakt</a>
           </div>

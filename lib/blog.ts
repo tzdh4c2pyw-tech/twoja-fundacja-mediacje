@@ -100,7 +100,7 @@ const commonInternalLinks = [
   },
   {
     label: "Kwalifikacje mediatora",
-    href: "/kwalifikacje"
+    href: "/#kwalifikacje"
   },
   {
     label: "Blog o mediacji",
@@ -1027,7 +1027,7 @@ export const blogPosts: BlogPost[] = [
     internalLinks: [
       {
         label: "Kwalifikacje mediatora",
-        href: "/kwalifikacje"
+        href: "/#kwalifikacje"
       },
       ...commonInternalLinks
     ]

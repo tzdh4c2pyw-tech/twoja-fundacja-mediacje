@@ -158,7 +158,7 @@ export default function PricingPage() {
 
           <div className="nav-links">
             <a href="/">Strona główna</a>
-            <a href="/kwalifikacje">Kwalifikacje</a>
+            <a href="/#kwalifikacje">Kwalifikacje</a>
             <a href="#kalkulator">Kalkulator</a>
             <a href="#podstawa-prawna">Podstawa prawna</a>
             <a href="#faq">FAQ</a>

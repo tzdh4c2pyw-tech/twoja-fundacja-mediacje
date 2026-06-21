@@ -153,7 +153,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <a href="/">Strona główna</a>
             <a href="/blog">Blog</a>
             <a href="/cennik">Cennik</a>
-            <a href="/kwalifikacje">Kwalifikacje</a>
+            <a href="/#kwalifikacje">Kwalifikacje</a>
             <a href="/#kontakt">Kontakt</a>
           </div>
         </nav>

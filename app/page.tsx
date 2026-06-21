@@ -882,7 +882,7 @@ export default function HomePage() {
         </div>
 
         <div className="hero-actions">
-          <a className="button button-secondary" href="/kwalifikacje">
+          <a className="button button-secondary" href="/#kwalifikacje">
             Zobacz wszystkie kwalifikacje
           </a>
           <a className="button button-secondary" href="/cennik">
@@ -987,7 +987,7 @@ export default function HomePage() {
               Blog o mediacji
             </a>
             <br />
-            <a className="footer-link" href="/kwalifikacje">
+            <a className="footer-link" href="/#kwalifikacje">
               Kwalifikacje
             </a>
             <br />

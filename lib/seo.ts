@@ -100,7 +100,7 @@ export const corePages = [
     changeFrequency: "monthly"
   },
   {
-    url: "/kwalifikacje",
+    url: "/#kwalifikacje",
     priority: 0.8,
     changeFrequency: "monthly"
   },
