@@ -3,6 +3,9 @@ import { Analytics } from "@vercel/analytics/next";
 import FloatingContactWidget from "@/components/FloatingContactWidget";
 import "./globals.css";
 
+const googleSiteVerification =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://twoja-fundacja-mediacje.vercel.app"),
   title: {
@@ -15,6 +18,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/"
   },
+  verification: {
+    google: googleSiteVerification
+  },
+
   openGraph: {
     title:
       "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",
