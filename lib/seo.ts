@@ -85,18 +85,38 @@ export const corePages = [
     changeFrequency: "weekly"
   },
   {
-    url: "/en",
-    priority: 0.9,
-    changeFrequency: "weekly"
+    url: "/mediator-sadowy-krakow",
+    priority: 0.92,
+    changeFrequency: "monthly"
   },
   {
-    url: "/uk",
+    url: "/mediator-krakow",
     priority: 0.9,
-    changeFrequency: "weekly"
+    changeFrequency: "monthly"
+  },
+  {
+    url: "/kontakt",
+    priority: 0.9,
+    changeFrequency: "monthly"
   },
   {
     url: "/cennik",
     priority: 0.85,
+    changeFrequency: "monthly"
+  },
+  {
+    url: "/blog",
+    priority: 0.85,
+    changeFrequency: "weekly"
+  },
+  {
+    url: "/mediacje-rodzinne-krakow",
+    priority: 0.88,
+    changeFrequency: "monthly"
+  },
+  {
+    url: "/mediacje-karne-krakow",
+    priority: 0.88,
     changeFrequency: "monthly"
   },
   {
@@ -105,8 +125,13 @@ export const corePages = [
     changeFrequency: "monthly"
   },
   {
-    url: "/kontakt",
-    priority: 0.9,
+    url: "/mediacje-gospodarcze-krakow",
+    priority: 0.88,
+    changeFrequency: "monthly"
+  },
+  {
+    url: "/mediacje-online",
+    priority: 0.84,
     changeFrequency: "monthly"
   },
   {
@@ -120,14 +145,14 @@ export const corePages = [
     changeFrequency: "monthly"
   },
   {
-    url: "/#kwalifikacje",
-    priority: 0.8,
+    url: "/en",
+    priority: 0.75,
     changeFrequency: "monthly"
   },
   {
-    url: "/blog",
-    priority: 0.85,
-    changeFrequency: "weekly"
+    url: "/uk",
+    priority: 0.75,
+    changeFrequency: "monthly"
   }
 ] as const;
 
