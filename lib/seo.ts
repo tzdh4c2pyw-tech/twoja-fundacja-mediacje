@@ -100,6 +100,11 @@ export const corePages = [
     changeFrequency: "monthly"
   },
   {
+    url: "/mediacje-cywilne-krakow",
+    priority: 0.88,
+    changeFrequency: "monthly"
+  },
+  {
     url: "/kontakt",
     priority: 0.9,
     changeFrequency: "monthly"

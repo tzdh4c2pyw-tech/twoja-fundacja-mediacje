@@ -70,7 +70,7 @@ const mediationTypes = [
   {
     title: "Mediacje cywilne",
     text: "Spory prywatne, zobowiązania, rozliczenia, sprawy sąsiedzkie, umowy i konflikty majątkowe.",
-    href: "#cywilne",
+    href: "/mediacje-cywilne-krakow",
     className: "card"
   },
   {
@@ -430,7 +430,7 @@ export default function HomePage() {
               Mediacja cywilna może pomóc w sprawach prywatnych, majątkowych,
               sąsiedzkich, umownych i rozliczeniowych.
             </p>
-            <a className="card-link" href="#cywilne">
+            <a className="card-link" href="/mediacje-cywilne-krakow">
               Spory cywilne →
             </a>
           </article>
@@ -891,6 +891,9 @@ export default function HomePage() {
               Zobowiązania, roszczenia, umowy, konflikty sąsiedzkie, sprawy
               majątkowe i rozliczenia.
             </p>
+            <a className="card-link" href="/mediacje-cywilne-krakow">
+              Zobacz mediacje cywilne →
+            </a>
           </article>
 
           <article className="card" id="gospodarcze">
