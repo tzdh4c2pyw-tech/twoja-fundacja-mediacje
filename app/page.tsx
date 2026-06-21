@@ -700,8 +700,8 @@ export default function HomePage() {
           Mediacje sądowe, pozasądowe, rodzinne, karne, cywilne, gospodarcze
           oraz online w Krakowie.
         </p>
-        <a className="text-link" href="/mediator-krakow">
-          Zobacz stronę mediatora →
+        <a className="text-link" href="/mediator-sadowy-krakow">
+          Zobacz stronę mediatora sądowego →
         </a>
       </article>
 
