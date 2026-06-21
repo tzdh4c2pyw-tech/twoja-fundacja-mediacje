@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ContactForm from "./ContactForm";
 
 const phone = "883 040 483";
 const phoneHref = "+48883040483";
@@ -132,6 +133,8 @@ export default function KontaktPage() {
           </article>
         </div>
       </section>
+
+      <ContactForm />
 
       <section className="section compact">
         <div className="feature green">
