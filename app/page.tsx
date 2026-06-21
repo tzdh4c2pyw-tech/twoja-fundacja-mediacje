@@ -764,6 +764,19 @@ export default function HomePage() {
           Zobacz stronę dla pełnomocników →
         </a>
       </article>
+
+      <article className="card">
+        <span className="tag">Dla cudzoziemców</span>
+        <h3>Mediacje po polsku, angielsku i ukraińsku</h3>
+        <p>
+          Kontakt dla osób mieszkających w Polsce albo za granicą, które
+          potrzebują mediacji w sprawie rodzinnej, cywilnej, gospodarczej lub
+          karnej.
+        </p>
+        <a className="text-link" href="/mediacje-dla-cudzoziemcow">
+          Zobacz mediacje dla cudzoziemców →
+        </a>
+      </article>
     </div>
   </div>
 </section>

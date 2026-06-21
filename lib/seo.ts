@@ -115,6 +115,11 @@ export const corePages = [
     changeFrequency: "monthly"
   },
   {
+    url: "/mediacje-dla-cudzoziemcow",
+    priority: 0.86,
+    changeFrequency: "monthly"
+  },
+  {
     url: "/#kwalifikacje",
     priority: 0.8,
     changeFrequency: "monthly"
