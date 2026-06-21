@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  faqPageJsonLd,
   localBusinessJsonLd,
   seoDescriptions,
   seoKeywords,
@@ -249,6 +250,7 @@ function PdfPreviewCard({
 export default function HomePage() {
   const localBusinessSchema = localBusinessJsonLd();
   const websiteSchema = websiteJsonLd();
+  const faqSchema = faqPageJsonLd(faqItems);
 
   return (
     <main>
@@ -263,6 +265,13 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(websiteSchema)
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema)
         }}
       />
 

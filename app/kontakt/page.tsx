@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contactPageJsonLd } from "@/lib/seo";
 import ContactForm from "./ContactForm";
 
 const phone = "883 040 483";
@@ -21,8 +22,16 @@ export const metadata: Metadata = {
 };
 
 export default function KontaktPage() {
+  const contactSchema = contactPageJsonLd();
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactSchema)
+        }}
+      />
       <div className="topbar">
         <nav className="nav">
           <a className="brand" href="/" aria-label="Strona główna">

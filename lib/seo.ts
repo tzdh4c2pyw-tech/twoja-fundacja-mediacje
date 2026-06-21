@@ -100,6 +100,11 @@ export const corePages = [
     changeFrequency: "monthly"
   },
   {
+    url: "/kontakt",
+    priority: 0.9,
+    changeFrequency: "monthly"
+  },
+  {
     url: "/#kwalifikacje",
     priority: 0.8,
     changeFrequency: "monthly"
@@ -190,6 +195,48 @@ export function websiteJsonLd() {
     url: siteUrl,
     inLanguage: ["pl-PL", "en", "uk"],
     publisher: {
+      "@id": `${siteUrl}/#organization`
+    }
+  };
+}
+
+export function faqPageJsonLd(
+  items: Array<{
+    question: string;
+    answer: string;
+  }>
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  };
+}
+
+export function contactPageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${siteUrl}/kontakt#contact`,
+    url: `${siteUrl}/kontakt`,
+    name: "Kontakt z mediatorem sądowym w Krakowie",
+    description:
+      "Kontakt z Fundacją Mediacji Sądowej i Pozasądowej w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online.",
+    inLanguage: "pl-PL",
+    isPartOf: {
+      "@id": `${siteUrl}/#website`
+    },
+    about: {
+      "@id": `${siteUrl}/#organization`
+    },
+    mainEntity: {
       "@id": `${siteUrl}/#organization`
     }
   };
