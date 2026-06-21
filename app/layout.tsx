@@ -1,35 +1,38 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import FloatingContactWidget from "@/components/FloatingContactWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://twoja-fundacja-mediacje.vercel.app"),
   title: {
-    default: "Mediator sądowy Kraków | Mediacje rodzinne, karne i online",
-    template: "%s | Mediator Kraków",
+    default:
+      "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",
+    template: "%s | Mediator sądowy Kraków"
   },
   description:
-    "Mediator w Krakowie: mediacje sądowe, rodzinne, karne, cywilne, gospodarcze i online. Sprawdź cennik, zasady mediacji i kontakt.",
+    "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Kontakt po polsku, angielsku i ukraińsku. Sprawdź cennik i opisz sprawę.",
   alternates: {
-    canonical: "/",
+    canonical: "/"
   },
   openGraph: {
-    title: "Mediator sądowy Kraków | Mediacje rodzinne, karne i online",
+    title:
+      "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",
     description:
-      "Mediacje w Krakowie i online: rodzinne, karne, cywilne, gospodarcze, sądowe i pozasądowe.",
+      "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Kontakt po polsku, angielsku i ukraińsku.",
     url: "https://twoja-fundacja-mediacje.vercel.app",
-    siteName: "Mediator Kraków",
+    siteName: "Fundacja Mediacji Sądowej i Pozasądowej",
     locale: "pl_PL",
-    type: "website",
+    type: "website"
   },
   robots: {
     index: true,
-    follow: true,
-  },
+    follow: true
+  }
 };
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {
@@ -37,6 +40,7 @@ export default function RootLayout({
     <html lang="pl">
       <body>
         {children}
+        <FloatingContactWidget />
         <Analytics />
       </body>
     </html>

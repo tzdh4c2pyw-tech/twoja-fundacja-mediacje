@@ -39,7 +39,7 @@ export const seoTitles = {
 };
 
 export const seoDescriptions = {
-  pl: "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Fundacja Mediacji Sądowej i Pozasądowej, ul. Kielecka 2/53.",
+  pl: "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Kontakt po polsku, angielsku i ukraińsku. Sprawdź cennik i opisz sprawę.",
   en: "Court and out-of-court mediation in Krakow. Family, criminal, civil, business and online mediation in Polish, English and Ukrainian.",
   uk: "Судова та позасудова медіація у Кракові. Сімейні, кримінальні, цивільні, господарські та онлайн-медіації польською, українською й англійською мовами."
 };

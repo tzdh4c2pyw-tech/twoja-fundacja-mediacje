@@ -1,4 +1,73 @@
-"use client";
+from pathlib import Path
+
+seo_path = Path("lib/seo.ts")
+layout_path = Path("app/layout.tsx")
+widget_path = Path("components/FloatingContactWidget.tsx")
+duplicate_widget_path = Path("app/components/FloatingContactWidget.tsx")
+
+seo = seo_path.read_text()
+seo = seo.replace(
+    'pl: "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",',
+    'pl: "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",'
+)
+seo = seo.replace(
+    'pl: "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Fundacja Mediacji Sądowej i Pozasądowej, ul. Kielecka 2/53.",',
+    'pl: "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Kontakt po polsku, angielsku i ukraińsku. Sprawdź cennik i opisz sprawę.",'
+)
+seo_path.write_text(seo)
+
+layout = '''import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import FloatingContactWidget from "@/components/FloatingContactWidget";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://twoja-fundacja-mediacje.vercel.app"),
+  title: {
+    default:
+      "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",
+    template: "%s | Mediator sądowy Kraków"
+  },
+  description:
+    "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Kontakt po polsku, angielsku i ukraińsku. Sprawdź cennik i opisz sprawę.",
+  alternates: {
+    canonical: "/"
+  },
+  openGraph: {
+    title:
+      "Mediator sądowy Kraków | Mediacje rodzinne, karne, cywilne i gospodarcze",
+    description:
+      "Mediator sądowy w Krakowie. Mediacje rodzinne, karne, cywilne, gospodarcze i online. Kontakt po polsku, angielsku i ukraińsku.",
+    url: "https://twoja-fundacja-mediacje.vercel.app",
+    siteName: "Fundacja Mediacji Sądowej i Pozasądowej",
+    locale: "pl_PL",
+    type: "website"
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
+};
+
+export default function RootLayout({
+  children
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="pl">
+      <body>
+        {children}
+        <FloatingContactWidget />
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+'''
+layout_path.write_text(layout)
+
+widget = '''"use client";
 
 const phone = "883 040 483";
 const phoneHref = "+48883040483";
@@ -106,3 +175,10 @@ export default function FloatingContactWidget() {
     </>
   );
 }
+'''
+widget_path.write_text(widget)
+
+if duplicate_widget_path.exists():
+    duplicate_widget_path.unlink()
+
+print("OK: SEO metadata and mobile contact bar patched.")
